@@ -21,7 +21,11 @@ import {
   MapPin, 
   AlertCircle,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Send,
+  Bell,
+  Check,
+  HelpCircle
 } from 'lucide-react';
 
 export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpdated }) {
@@ -30,13 +34,20 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
   const [loginError, setLoginError] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
 
-  const [activeTab, setActiveTab] = useState('products'); // 'products' | 'orders'
+  const [activeTab, setActiveTab] = useState('products'); // 'products' | 'orders' | 'telegram'
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+
+  // Telegram settings state
+  const [telegramToken, setTelegramToken] = useState('');
+  const [telegramChatId, setTelegramChatId] = useState('');
+  const [telegramTesting, setTelegramTesting] = useState(false);
+  const [telegramTestSuccess, setTelegramTestSuccess] = useState('');
+  const [telegramTestError, setTelegramTestError] = useState('');
 
   // Preset image choices
   const presetImages = [
@@ -77,7 +88,6 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
         setLoginError('Mot de passe incorrect.');
       }
     } catch (err) {
-      // Fallback local check if backend offline
       if (password === 'yassir2027') {
         setIsAuthenticated(true);
         localStorage.setItem('lyxene_admin_session', 'true');
@@ -110,6 +120,14 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
       if (oRes.ok) {
         const oData = await oRes.json();
         setOrders(oData.orders || []);
+      }
+
+      // Fetch Settings
+      const sRes = await fetch(`${backendUrl}/api/settings`);
+      if (sRes.ok) {
+        const sData = await sRes.json();
+        setTelegramToken(sData.telegramToken || '');
+        setTelegramChatId(sData.telegramChatId || '');
       }
     } catch (e) {
       console.error('Error fetching admin data:', e);
@@ -197,6 +215,48 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
     }
   };
 
+  // Save Telegram Settings
+  const handleSaveTelegram = async () => {
+    try {
+      const res = await fetch(`${backendUrl}/api/settings`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ telegramToken, telegramChatId })
+      });
+      if (res.ok) {
+        setSaveSuccess('Paramètres Telegram enregistrés avec succès !');
+        setTimeout(() => setSaveSuccess(''), 4000);
+      }
+    } catch (e) {
+      alert('Erreur lors de la sauvegarde des paramètres');
+    }
+  };
+
+  // Test Telegram Notification
+  const handleTestTelegram = async () => {
+    setTelegramTesting(true);
+    setTelegramTestSuccess('');
+    setTelegramTestError('');
+
+    try {
+      const res = await fetch(`${backendUrl}/api/test-telegram`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ telegramToken, telegramChatId })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setTelegramTestSuccess(data.message);
+      } else {
+        setTelegramTestError(data.error || 'Erreur Telegram');
+      }
+    } catch (err) {
+      setTelegramTestError('Erreur de connexion au serveur Render.');
+    } finally {
+      setTelegramTesting(false);
+    }
+  };
+
   // Format phone to international WhatsApp link
   const getWhatsAppLink = (phone, name, orderId, total) => {
     let cleanPhone = phone.replace(/[^0-9]/g, '');
@@ -265,7 +325,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
             <button
               type="submit"
               disabled={loginLoading}
-              className="w-full bg-[#2D4030] hover:bg-[#202E23] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+              className="w-full bg-[#2D4030] hover:bg-[#202E23] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
             >
               {loginLoading ? 'Connexion...' : 'Accéder au Dashboard'}
             </button>
@@ -274,7 +334,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
           <div className="mt-6 text-center">
             <button
               onClick={onBackToShop}
-              className="text-xs text-[#2D4030] hover:underline font-semibold inline-flex items-center gap-1"
+              className="text-xs text-[#2D4030] hover:underline font-semibold inline-flex items-center gap-1 cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Retour à la boutique
             </button>
@@ -312,21 +372,21 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
             <button
               onClick={fetchData}
               title="Actualiser les données"
-              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition flex items-center gap-1.5 text-xs font-semibold"
+              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">Actualiser</span>
             </button>
             <button
               onClick={onBackToShop}
-              className="bg-[#F7F4EE] text-[#2D4030] px-4 py-2 rounded-xl text-xs font-bold hover:bg-white transition flex items-center gap-1.5 shadow-sm"
+              className="bg-[#F7F4EE] text-[#2D4030] px-4 py-2 rounded-xl text-xs font-bold hover:bg-white transition flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Voir la Boutique</span>
             </button>
             <button
               onClick={handleLogout}
-              className="text-xs text-gray-300 hover:text-white px-2 py-1"
+              className="text-xs text-gray-300 hover:text-white px-2 py-1 cursor-pointer"
             >
               Déconnexion
             </button>
@@ -334,10 +394,10 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
         </div>
 
         {/* Sub-tabs bar */}
-        <div className="max-w-7xl mx-auto px-6 border-t border-[#405844] flex gap-2 pt-2 pb-2">
+        <div className="max-w-7xl mx-auto px-6 border-t border-[#405844] flex gap-2 pt-2 pb-2 overflow-x-auto">
           <button
             onClick={() => setActiveTab('products')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer whitespace-nowrap ${
               activeTab === 'products'
                 ? 'bg-[#F4EFE6] text-[#2D4030] shadow'
                 : 'text-gray-300 hover:bg-white/10'
@@ -346,9 +406,10 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
             <Package className="w-4 h-4" />
             📦 Produits & Prix ({products.length})
           </button>
+
           <button
             onClick={() => setActiveTab('orders')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer whitespace-nowrap ${
               activeTab === 'orders'
                 ? 'bg-[#F4EFE6] text-[#2D4030] shadow'
                 : 'text-gray-300 hover:bg-white/10'
@@ -362,6 +423,21 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
               </span>
             )}
           </button>
+
+          <button
+            onClick={() => setActiveTab('telegram')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer whitespace-nowrap ${
+              activeTab === 'telegram'
+                ? 'bg-[#F4EFE6] text-[#2D4030] shadow'
+                : 'text-gray-300 hover:bg-white/10'
+            }`}
+          >
+            <Send className="w-4 h-4 text-[#29b6f6]" />
+            🔔 Alertes Telegram (Groupe)
+            {telegramToken && telegramChatId && (
+              <span className="w-2 h-2 rounded-full bg-green-400 inline-block"></span>
+            )}
+          </button>
         </div>
       </header>
 
@@ -370,7 +446,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
         
         {/* Success Alert Banner */}
         {saveSuccess && (
-          <div className="mb-6 p-4 bg-green-100 border border-green-300 text-green-800 rounded-2xl flex items-center justify-between shadow-sm animate-fade-in">
+          <div className="mb-6 p-4 bg-green-100 border border-green-300 text-green-800 rounded-2xl flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-2 font-semibold text-sm">
               <CheckCircle className="w-5 h-5 text-green-700" />
               <span>{saveSuccess}</span>
@@ -395,7 +471,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
               </div>
               <button
                 onClick={resetProducts}
-                className="text-xs text-gray-500 hover:text-red-600 hover:underline font-semibold flex items-center gap-1"
+                className="text-xs text-gray-500 hover:text-red-600 hover:underline font-semibold flex items-center gap-1 cursor-pointer"
               >
                 <RefreshCw className="w-3.5 h-3.5" /> Réinitialiser par défaut
               </button>
@@ -487,7 +563,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
                             key={idx}
                             type="button"
                             onClick={() => handleProductChange(product.id, 'image', img.url)}
-                            className={`text-[10px] px-2 py-0.5 rounded-lg border transition ${
+                            className={`text-[10px] px-2 py-0.5 rounded-lg border transition cursor-pointer ${
                               product.image === img.url 
                                 ? 'bg-[#2D4030] text-white border-[#2D4030]' 
                                 : 'bg-white text-gray-600 border-[#DFD6C7] hover:bg-gray-50'
@@ -610,7 +686,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
                   <button
                     key={status}
                     onClick={() => setStatusFilter(status)}
-                    className={`text-xs px-3 py-1.5 rounded-xl font-semibold capitalize whitespace-nowrap transition ${
+                    className={`text-xs px-3 py-1.5 rounded-xl font-semibold capitalize whitespace-nowrap transition cursor-pointer ${
                       statusFilter === status
                         ? 'bg-[#2D4030] text-white shadow-sm'
                         : 'bg-white text-gray-600 border border-[#DFD6C7] hover:bg-gray-50'
@@ -678,7 +754,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
                           <button
                             onClick={() => deleteOrder(order.id)}
                             title="Supprimer la commande"
-                            className="p-1.5 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition"
+                            className="p-1.5 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition cursor-pointer"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -746,6 +822,112 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
                 })}
               </div>
             )}
+          </div>
+        )}
+
+        {/* ============================================
+            TAB 3: TELEGRAM GROUP ALERTS
+        ============================================ */}
+        {activeTab === 'telegram' && (
+          <div className="max-w-3xl mx-auto space-y-6">
+            
+            <div className="bg-[#FBF9F5] p-6 rounded-3xl border border-[#DFD6C7] shadow-sm space-y-6">
+              <div className="flex items-center gap-3 border-b border-[#EFEAE1] pb-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#29b6f6]/10 flex items-center justify-center text-[#29b6f6]">
+                  <Send className="w-6 h-6" />
+                </div>
+                <div>
+                  <h2 className="font-serif font-bold text-xl text-[#2D4030]">Notifications Telegram en Temps Réel</h2>
+                  <p className="text-xs text-gray-600">Recevez chaque nouvelle commande instantanément dans votre groupe Telegram avec sonnerie et lien WhatsApp direct.</p>
+                </div>
+              </div>
+
+              {/* Step by step guide */}
+              <div className="bg-white p-5 rounded-2xl border border-[#DFD6C7] space-y-3 text-xs">
+                <p className="font-bold text-sm text-[#2D4030] flex items-center gap-1.5">
+                  <HelpCircle className="w-4 h-4 text-[#A26D62]" /> Comment créer votre Bot & Groupe Telegram (1 minute) :
+                </p>
+                <ol className="list-decimal list-inside space-y-2 text-gray-700 leading-relaxed">
+                  <li>
+                    Ouvrez Telegram et cherchez le bot officiel <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">@BotFather</a>.
+                  </li>
+                  <li>
+                    Envoyez <code>/newbot</code>, donnez un nom à votre bot (ex: <i>Lyxene Notif Bot</i>), puis copiez le <strong>Token HTTP API</strong> généré.
+                  </li>
+                  <li>
+                    Créez un <strong>Groupe Telegram</strong> (ex: <i>Commandes Lyxene</i>) et <strong>ajoutez votre nouveau bot comme Administrateur</strong> du groupe.
+                  </li>
+                  <li>
+                    Pour obtenir le <strong>Chat ID</strong> du groupe : ajoutez temporairement le bot <a href="https://t.me/RawDataBot" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">@RawDataBot</a> dans votre groupe, il vous affichera l'ID (ex: <code>-1001234567890</code>).
+                  </li>
+                </ol>
+              </div>
+
+              {/* Form settings */}
+              <div className="space-y-4 text-xs">
+                <div>
+                  <label className="font-bold text-gray-700 block mb-1">
+                    1. Token du Bot Telegram (obtenu via @BotFather) *
+                  </label>
+                  <input
+                    type="text"
+                    value={telegramToken}
+                    onChange={(e) => setTelegramToken(e.target.value)}
+                    placeholder="Ex: 7123456789:AAHqXXXXXXXXXXXXX..."
+                    className="w-full p-3 rounded-xl border border-[#DFD6C7] bg-white font-mono text-xs focus:outline-none focus:border-[#2D4030]"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-bold text-gray-700 block mb-1">
+                    2. Chat ID du Groupe ou Canal Telegram *
+                  </label>
+                  <input
+                    type="text"
+                    value={telegramChatId}
+                    onChange={(e) => setTelegramChatId(e.target.value)}
+                    placeholder="Ex: -1001234567890 ou votre ID perso"
+                    className="w-full p-3 rounded-xl border border-[#DFD6C7] bg-white font-mono text-xs focus:outline-none focus:border-[#2D4030]"
+                  />
+                </div>
+
+                {/* Test status banner */}
+                {telegramTestSuccess && (
+                  <div className="p-3.5 bg-green-50 border border-green-200 text-green-800 rounded-xl flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 flex-shrink-0 text-green-600" />
+                    <span>{telegramTestSuccess}</span>
+                  </div>
+                )}
+
+                {telegramTestError && (
+                  <div className="p-3.5 bg-red-50 border border-red-200 text-red-800 rounded-xl flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-600" />
+                    <span>{telegramTestError}</span>
+                  </div>
+                )}
+
+                {/* Action buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <button
+                    onClick={handleSaveTelegram}
+                    className="flex-1 bg-[#2D4030] hover:bg-[#202E23] text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow cursor-pointer transition"
+                  >
+                    <Save className="w-4 h-4" />
+                    Enregistrer les Paramètres
+                  </button>
+
+                  <button
+                    onClick={handleTestTelegram}
+                    disabled={telegramTesting || !telegramToken || !telegramChatId}
+                    className="bg-[#29b6f6] hover:bg-[#0288d1] disabled:bg-gray-300 text-white py-3 px-5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow cursor-pointer transition"
+                  >
+                    <Send className={`w-4 h-4 ${telegramTesting ? 'animate-bounce' : ''}`} />
+                    {telegramTesting ? 'Envoi...' : '🔔 Tester la Notification'}
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         )}
 

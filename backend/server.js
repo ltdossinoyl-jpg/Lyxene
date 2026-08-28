@@ -1,4 +1,4 @@
-// server.js — COD Lead Collection & Admin Backend
+// server.js — COD Lead Collection & Admin Backend with Telegram Alerts
 require('dotenv').config();
 
 const express = require('express');
@@ -31,6 +31,149 @@ app.post('/api/admin/login', (req, res) => {
 });
 
 // ============================================
+//  SETTINGS & NOTIFICATIONS CONFIG
+// ============================================
+const settingsFile = path.join(__dirname, 'settings.json');
+
+function getSettings() {
+  try {
+    if (fs.existsSync(settingsFile)) {
+      return JSON.parse(fs.readFileSync(settingsFile, 'utf8'));
+    }
+  } catch (e) {
+    console.error('Error reading settings:', e);
+  }
+  return {
+    telegramToken: process.env.TELEGRAM_BOT_TOKEN || '',
+    telegramChatId: process.env.TELEGRAM_CHAT_ID || ''
+  };
+}
+
+function saveSettings(settings) {
+  fs.writeFileSync(settingsFile, JSON.stringify(settings, null, 2));
+}
+
+// GET — Settings (Admin)
+app.get('/api/settings', (req, res) => {
+  const s = getSettings();
+  res.json(s);
+});
+
+// POST — Update Settings (Admin)
+app.post('/api/settings', (req, res) => {
+  try {
+    const { telegramToken, telegramChatId } = req.body;
+    const s = {
+      telegramToken: (telegramToken || '').trim(),
+      telegramChatId: (telegramChatId || '').trim()
+    };
+    saveSettings(s);
+    res.json({ success: true, settings: s });
+  } catch (e) {
+    res.status(500).json({ error: 'Erreur lors de la sauvegarde des paramètres' });
+  }
+});
+
+// POST — Send Test Telegram Message
+app.post('/api/test-telegram', async (req, res) => {
+  try {
+    const s = getSettings();
+    const token = req.body.telegramToken || s.telegramToken;
+    const chatId = req.body.telegramChatId || s.telegramChatId;
+
+    if (!token || !chatId) {
+      return res.status(400).json({ error: 'Token ou Chat ID manquant' });
+    }
+
+    const testMsg = `
+🌿 <b>LYXENE PARIS — Test de Notification Réussi !</b> ✅
+
+🤖 Le bot Telegram est maintenant connecté à votre site.
+📦 Toutes les nouvelles commandes de vos clients arriveront automatiquement dans ce groupe avec les coordonnées complètes et le lien WhatsApp direct !
+`.trim();
+
+    const tgRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: testMsg,
+        parse_mode: 'HTML'
+      })
+    });
+
+    const data = await tgRes.json();
+    if (data.ok) {
+      res.json({ success: true, message: 'Message de test envoyé avec succès dans votre groupe Telegram !' });
+    } else {
+      res.status(400).json({ error: data.description || 'Erreur Telegram' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message || 'Erreur lors de l\'envoi' });
+  }
+});
+
+// Send Telegram notification for orders
+async function sendTelegramNotification(order) {
+  const s = getSettings();
+  const token = s.telegramToken || process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = s.telegramChatId || process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) {
+    console.log('ℹ️ Telegram notifications not configured yet');
+    return;
+  }
+
+  let cleanPhone = (order.phone || '').replace(/[^0-9]/g, '');
+  if (cleanPhone.startsWith('0')) {
+    cleanPhone = '212' + cleanPhone.substring(1);
+  }
+  const waLink = `https://wa.me/${cleanPhone}`;
+
+  const itemsList = order.items.map(i => `  ▫️ <b>${i.name}</b> (${i.price} DH)`).join('\n');
+
+  const text = `
+🌿 <b>🛍️ NOUVELLE COMMANDE LYXENE !</b> 🛍️
+
+🆔 <b>N° Commande :</b> <code>${order.id}</code>
+👤 <b>Nom :</b> <b>${order.fullName}</b>
+📞 <b>Téléphone :</b> <code>${order.phone}</code>
+🏙️ <b>Ville :</b> <b>${order.city}</b>
+📍 <b>Adresse :</b> ${order.address}
+${order.notes ? `📝 <b>Note :</b> <i>${order.notes}</i>\n` : ''}
+📦 <b>Articles :</b>
+${itemsList}
+
+💰 <b>TOTAL COD :</b> <b>${order.total} DH</b>
+🚚 <b>Mode :</b> Paiement à la Livraison (COD)
+
+📲 <a href="${waLink}"><b>👉 Cliquer ici pour contacter sur WhatsApp</b></a>
+`.trim();
+
+  try {
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: text,
+        parse_mode: 'HTML',
+        disable_web_page_preview: false
+      })
+    });
+    const result = await res.json();
+    if (!result.ok) {
+      console.error('Telegram notification error:', result.description);
+    } else {
+      console.log(`📱 Telegram alert sent for order ${order.id}`);
+    }
+  } catch (err) {
+    console.error('Failed to send Telegram notification:', err);
+  }
+}
+
+// ============================================
 //  PRODUCTS STORAGE & MANAGEMENT
 // ============================================
 const productsFile = path.join(__dirname, 'products.json');
@@ -53,7 +196,7 @@ const DEFAULT_PRODUCTS = [
   {
     id: 2,
     name: "Sérum Visage Concentré Anti-Acné (50 ml)",
-    arName: "سيروم الوجه المركز المضاد للحبوب (50 مل)",
+    arName: "سيروم الوجه المركز المضاد للحبوب (50 ml)",
     enName: "Concentrated Anti-Acne Face Serum (50 ml)",
     subtitle: "Formule concentrée à l'Acide Salicylique qui pénètre en profondeur pour resserrer les pores, réduire les rougeurs et accélérer la cicatrisation.",
     arSubtitle: "تركيبة مركزة بحمض الساليسيليك تتغلغل بعمق لتضييق المسام وتقليل الاحمرار وتسريع التئام البشرة.",
@@ -67,7 +210,7 @@ const DEFAULT_PRODUCTS = [
   {
     id: 3,
     name: "Crème Visage Anti-Acné (50 ml)",
-    arName: "كريم الوجه المهدئ والمرطب (50 مل)",
+    arName: "كريم الوجه المهدئ والمرطب (50 ml)",
     enName: "Anti-Acne Face Cream (50 ml)",
     subtitle: "Hydrate sans effet gras, apaise les irritations et rééquilibre la production de sébum. Texture légère qui fond instantanément dans la peau.",
     arSubtitle: "ترطيب بدون لمعان، تهدئة الالتهابات وإعادة توازن إفراز الدهون. ملمس خفيف يمتص فوراً.",
@@ -175,7 +318,7 @@ function saveAllOrders(orders) {
 }
 
 // POST — New COD Order / Lead
-app.post('/api/orders', (req, res) => {
+app.post('/api/orders', async (req, res) => {
   try {
     const { fullName, phone, city, address, items, total, notes } = req.body;
 
@@ -201,6 +344,9 @@ app.post('/api/orders', (req, res) => {
 
     saveOrder(order);
     console.log(`✅ New order: ${order.id} — ${fullName} — ${phone} — ${total} DH`);
+
+    // Send Telegram alert asynchronously
+    sendTelegramNotification(order).catch(err => console.error('TG notification failed:', err));
 
     res.json({ 
       success: true, 
