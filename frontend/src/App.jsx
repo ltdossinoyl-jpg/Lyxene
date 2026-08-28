@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   ShoppingBag, 
   MessageCircle, 
@@ -17,10 +17,12 @@ import {
   MapPin,
   FileText,
   Package,
-  ArrowLeft
+  ArrowLeft,
+  Settings
 } from 'lucide-react';
+import AdminDashboard from './AdminDashboard.jsx';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://lyxene.onrender.com';
 const WHATSAPP_NUMBER = '212600000000'; // Update with your real number
 
 const translations = {
@@ -176,7 +178,7 @@ const translations = {
   }
 };
 
-const products = [
+const INITIAL_PRODUCTS = [
   {
     id: 1,
     name: "Savon Liquide Anti-Acné (250 ml)",
@@ -194,7 +196,7 @@ const products = [
   {
     id: 2,
     name: "Sérum Visage Concentré Anti-Acné (50 ml)",
-    arName: "سيروم الوجه المركز المضاد للحبوب (50 مل)",
+    arName: "سيروم الوجه المركز المضاد للحبوب (50 ml)",
     enName: "Concentrated Anti-Acne Face Serum (50 ml)",
     subtitle: "Formule concentrée à l'Acide Salicylique qui pénètre en profondeur pour resserrer les pores, réduire les rougeurs et accélérer la cicatrisation.",
     arSubtitle: "تركيبة مركزة بحمض الساليسيليك تتغلغل بعمق لتضييق المسام وتقليل الاحمرار وتسريع التئام البشرة.",
@@ -208,7 +210,7 @@ const products = [
   {
     id: 3,
     name: "Crème Visage Anti-Acné (50 ml)",
-    arName: "كريم الوجه المهدئ والمرطب (50 مل)",
+    arName: "كريم الوجه المهدئ والمرطب (50 ml)",
     enName: "Anti-Acne Face Cream (50 ml)",
     subtitle: "Hydrate sans effet gras, apaise les irritations et rééquilibre la production de sébum. Texture légère qui fond instantanément dans la peau.",
     arSubtitle: "ترطيب بدون لمعان، تهدئة الالتهابات وإعادة توازن إفراز الدهون. ملمس خفيف يمتص فوراً.",
@@ -237,10 +239,11 @@ const products = [
 
 export default function App() {
   const [lang, setLang] = useState('fr');
+  const [products, setProducts] = useState(INITIAL_PRODUCTS);
   const [cart, setCart] = useState([]);
   const [orderOpen, setOrderOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [page, setPage] = useState('shop'); // 'shop' | 'thankyou'
+  const [page, setPage] = useState('shop'); // 'shop' | 'thankyou' | 'admin'
   const [orderId, setOrderId] = useState('');
   const [sending, setSending] = useState(false);
   const [formError, setFormError] = useState('');
@@ -253,6 +256,40 @@ export default function App() {
     address: '',
     notes: ''
   });
+
+  const fetchProducts = async () => {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/products`);
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setProducts(data);
+        }
+      }
+    } catch (e) {
+      console.log('Using default products fallback');
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+    
+    // Check URL hash for admin route
+    if (window.location.hash === '#admin') {
+      setPage('admin');
+    }
+
+    const handleHashChange = () => {
+      if (window.location.hash === '#admin') {
+        setPage('admin');
+      } else if (page === 'admin') {
+        setPage('shop');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const t = translations[lang];
   const isRTL = lang === 'ar';
@@ -319,6 +356,22 @@ export default function App() {
   const whatsappOrderUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     `Salam, ana ${form.fullName || '...'}, commande ${orderId}. Bghit nta9ed la livraison.`
   )}`;
+
+  // ============================================
+  //  ADMIN DASHBOARD VIEW
+  // ============================================
+  if (page === 'admin') {
+    return (
+      <AdminDashboard 
+        backendUrl={BACKEND_URL}
+        onBackToShop={() => {
+          window.location.hash = '';
+          setPage('shop');
+        }}
+        onProductsUpdated={fetchProducts}
+      />
+    );
+  }
 
   // ============================================
   //  THANK YOU PAGE
@@ -809,10 +862,20 @@ export default function App() {
               <p className="mt-0.5 text-gray-400">© 2026 — Tous droits réservés.</p>
             </div>
           </div>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center gap-6">
             <a href="#" className="hover:underline">Conditions Générales</a>
             <a href="#" className="hover:underline">Politique de Confidentialité</a>
             <a href="#" className="hover:underline">Contactez-nous</a>
+            <button 
+              onClick={() => {
+                window.location.hash = '#admin';
+                setPage('admin');
+              }} 
+              className="text-[11px] bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-lg transition font-semibold flex items-center gap-1.5 cursor-pointer border border-[#405844]"
+            >
+              <Settings className="w-3.5 h-3.5" />
+              Admin Dashboard
+            </button>
           </div>
         </div>
       </footer>
