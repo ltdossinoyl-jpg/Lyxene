@@ -43,7 +43,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
   const [statusFilter, setStatusFilter] = useState('all');
 
   // Telegram settings state
-  const [telegramToken, setTelegramToken] = useState('');
+  const [telegramToken, setTelegramToken] = useState('8048073592:AAEeziHsJx_Hc9MbI9GOcUTzVQ-Q-L6Wg_I');
   const [telegramChatId, setTelegramChatId] = useState('');
   const [telegramTesting, setTelegramTesting] = useState(false);
   const [telegramTestSuccess, setTelegramTestSuccess] = useState('');

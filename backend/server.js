@@ -35,16 +35,22 @@ app.post('/api/admin/login', (req, res) => {
 // ============================================
 const settingsFile = path.join(__dirname, 'settings.json');
 
+const DEFAULT_TELEGRAM_TOKEN = '8048073592:AAEeziHsJx_Hc9MbI9GOcUTzVQ-Q-L6Wg_I';
+
 function getSettings() {
   try {
     if (fs.existsSync(settingsFile)) {
-      return JSON.parse(fs.readFileSync(settingsFile, 'utf8'));
+      const s = JSON.parse(fs.readFileSync(settingsFile, 'utf8'));
+      return {
+        telegramToken: s.telegramToken || DEFAULT_TELEGRAM_TOKEN,
+        telegramChatId: s.telegramChatId || ''
+      };
     }
   } catch (e) {
     console.error('Error reading settings:', e);
   }
   return {
-    telegramToken: process.env.TELEGRAM_BOT_TOKEN || '',
+    telegramToken: process.env.TELEGRAM_BOT_TOKEN || DEFAULT_TELEGRAM_TOKEN,
     telegramChatId: process.env.TELEGRAM_CHAT_ID || ''
   };
 }
