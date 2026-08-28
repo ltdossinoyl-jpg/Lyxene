@@ -1,9 +1,10 @@
-// server.js
+// server.js — COD Lead Collection Backend
 require('dotenv').config();
 
 const express = require('express');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
@@ -16,7 +17,6 @@ const allowedOrigins = [
 
 app.use(cors({ 
   origin: function(origin, callback) {
-    // Allow requests with no origin (mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
@@ -30,22 +30,71 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'lyxene-backend' });
 });
 
-// Stripe Payment Intent
-app.post('/api/create-payment-intent', async (req, res) => {
+// Store orders in a JSON file (simple storage for leads)
+const ordersFile = path.join(__dirname, 'orders.json');
+
+function getOrders() {
   try {
-    const { amount, currency = 'mad' } = req.body;
-
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount * 100, // En centimes
-      currency: currency,
-      automatic_payment_methods: { enabled: true },
-      metadata: { brand: 'Lyxene Skincare' }
-    });
-
-    res.json({ clientSecret: paymentIntent.client_secret });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (fs.existsSync(ordersFile)) {
+      return JSON.parse(fs.readFileSync(ordersFile, 'utf8'));
+    }
+  } catch (e) {
+    console.error('Error reading orders:', e);
   }
+  return [];
+}
+
+function saveOrder(order) {
+  const orders = getOrders();
+  orders.push(order);
+  fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2));
+}
+
+// POST — New COD Order / Lead
+app.post('/api/orders', (req, res) => {
+  try {
+    const { fullName, phone, city, address, items, total, notes } = req.body;
+
+    // Validation
+    if (!fullName || !phone || !city || !address || !items || items.length === 0) {
+      return res.status(400).json({ 
+        error: 'Merci de remplir tous les champs obligatoires.' 
+      });
+    }
+
+    const order = {
+      id: `LYX-${Date.now()}`,
+      fullName,
+      phone,
+      city,
+      address,
+      notes: notes || '',
+      items,
+      total,
+      paymentMethod: 'COD',
+      status: 'pending',
+      createdAt: new Date().toISOString()
+    };
+
+    saveOrder(order);
+
+    console.log(`✅ New order: ${order.id} — ${fullName} — ${phone} — ${total} DH`);
+
+    res.json({ 
+      success: true, 
+      orderId: order.id,
+      message: 'Commande reçue avec succès!'
+    });
+  } catch (error) {
+    console.error('Order error:', error);
+    res.status(500).json({ error: 'Erreur serveur. Réessayez.' });
+  }
+});
+
+// GET — List all orders (admin)
+app.get('/api/orders', (req, res) => {
+  const orders = getOrders();
+  res.json({ total: orders.length, orders });
 });
 
 const PORT = process.env.PORT || 5000;

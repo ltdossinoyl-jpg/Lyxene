@@ -5,15 +5,23 @@ import {
   ShieldCheck, 
   Sparkles, 
   Leaf, 
-  Globe, 
   CreditCard, 
   Lock, 
-  CheckCircle, 
   Star,
-  ChevronRight,
   Menu,
-  X
+  X,
+  Truck,
+  CheckCircle,
+  User,
+  Phone,
+  MapPin,
+  FileText,
+  Package,
+  ArrowLeft
 } from 'lucide-react';
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const WHATSAPP_NUMBER = '212600000000'; // Update with your real number
 
 const translations = {
   fr: {
@@ -21,7 +29,7 @@ const translations = {
     tagline: "Révélez l'éclat naturel de votre peau",
     heroTitle: "La Routine Anti-Acné Experte & Naturelle",
     heroSubtitle: "Formulée à base d'Aloe Vera pur et d'Acide Salicylique pour purifier, apaiser et transformer votre grain de peau durablement.",
-    shopNow: "Commander la Routine Complète",
+    shopNow: "Commander Maintenant",
     discoverProducts: "Découvrir la Gamme",
     bundleOffer: "Pack Complet 4-en-1 (Best-Seller)",
     saveBadge: "Économisez 25%",
@@ -36,27 +44,42 @@ const translations = {
     feat3Desc: "94% de nos utilisatrices constatent une réduction nette des boutons et points noirs.",
     catalogTitle: "Nos 4 Essentiels Anti-Imperfections",
     addToCart: "Ajouter au Panier",
-    buyNow: "Acheter Maintenant",
+    buyNow: "Commander",
     blogTitle: "Conseils & Rituels Skincare",
-    checkoutTitle: "Paiement Sécurisé",
+    orderTitle: "Passer la Commande",
     orderSummary: "Récapitulatif de Commande",
-    cardNumber: "Numéro de Carte",
-    expiry: "MM/AA",
-    cvc: "CVC",
-    payBtn: "Payer avec Stripe",
-    whatsappHelp: "Besoin d'un conseil ? Discutez avec notre experte beauté",
+    codLabel: "Paiement à la Livraison (COD)",
+    codDesc: "Payez en espèces à la réception de votre colis",
+    fullName: "Nom Complet",
+    phoneNumber: "Numéro de Téléphone",
+    city: "Ville",
+    address: "Adresse Complète",
+    notes: "Notes (Optionnel)",
+    notesPlaceholder: "Ex: Près de la mosquée, 2ème étage...",
+    confirmOrder: "Confirmer la Commande",
+    freeShipping: "Livraison Gratuite 🚚",
+    thankYouTitle: "Merci pour votre commande ! 🎉",
+    thankYouSubtitle: "Votre commande a été enregistrée avec succès.",
+    thankYouOrderId: "Numéro de commande",
+    thankYouMessage: "Notre équipe va vous contacter sous 24h pour confirmer la livraison.",
+    whatsappContact: "Contactez-nous sur WhatsApp",
+    whatsappQuestion: "Une question ? Écrivez-nous",
+    continueShopping: "Retour à la Boutique",
     navHome: "Accueil",
     navShop: "Boutique",
     navRoutine: "La Routine",
     navBlog: "Conseils",
-    navContact: "Contact"
+    navContact: "Contact",
+    remove: "Supprimer",
+    total: "Total",
+    sending: "Envoi en cours..."
   },
   ar: {
     brand: "LYXENE PARIS",
     tagline: "أظهري الإشراقة الطبيعية لبشرتك",
     heroTitle: "المجموعة الطبية المتكاملة لعلاج حب الشباب",
     heroSubtitle: "تركيبة فريدة بخلاصة الألوفيرا النقية وحمض الساليسيليك لتنقية البشرة، تهدئة الاحمرار واستعادة نضارتها.",
-    shopNow: "طلب المجموعة الكاملة",
+    shopNow: "اطلبي الآن",
     discoverProducts: "اكتشفي المنتجات",
     bundleOffer: "المجموعة الكاملة 4 في 1 (الأكثر مبيعاً)",
     saveBadge: "خصم 25%",
@@ -71,27 +94,42 @@ const translations = {
     feat3Desc: "94% من الفتيات لاحظوا اختفاء الحبوب وتوحيد لون البشرة.",
     catalogTitle: "منتجاتنا الأربعة المتخصصة",
     addToCart: "أضف إلى السلة",
-    buyNow: "شراء فوري",
+    buyNow: "اطلب الآن",
     blogTitle: "نصائح وروتين العناية بالبشرة",
-    checkoutTitle: "إتمام الدفع بأمان",
+    orderTitle: "إتمام الطلب",
     orderSummary: "ملخص الطلب",
-    cardNumber: "رقم البطاقة البنكية",
-    expiry: "شهر / سنة",
-    cvc: "رمز الأمان",
-    payBtn: "دفع آمن عبر Stripe",
-    whatsappHelp: "استشارة مجانية؟ تواصلي معنا عبر واتساب",
+    codLabel: "الدفع عند الاستلام",
+    codDesc: "ادفعي نقداً عند استلام الطرد",
+    fullName: "الاسم الكامل",
+    phoneNumber: "رقم الهاتف",
+    city: "المدينة",
+    address: "العنوان الكامل",
+    notes: "ملاحظات (اختياري)",
+    notesPlaceholder: "مثال: قرب المسجد، الطابق الثاني...",
+    confirmOrder: "تأكيد الطلب",
+    freeShipping: "توصيل مجاني 🚚",
+    thankYouTitle: "شكراً على طلبك! 🎉",
+    thankYouSubtitle: "تم تسجيل طلبك بنجاح.",
+    thankYouOrderId: "رقم الطلب",
+    thankYouMessage: "فريقنا سيتواصل معك خلال 24 ساعة لتأكيد التوصيل.",
+    whatsappContact: "تواصلي معنا عبر واتساب",
+    whatsappQuestion: "عندك سؤال؟ راسلينا",
+    continueShopping: "العودة للمتجر",
     navHome: "الرئيسية",
     navShop: "المتجر",
     navRoutine: "الروتين",
     navBlog: "نصائح",
-    navContact: "اتصل بنا"
+    navContact: "اتصل بنا",
+    remove: "حذف",
+    total: "المجموع",
+    sending: "جاري الإرسال..."
   },
   en: {
     brand: "LYXENE PARIS",
     tagline: "Reveal Your Skin's Natural Radiance",
     heroTitle: "Expert Anti-Acne Botanical Skincare",
     heroSubtitle: "Powered by pure Aloe Vera and Salicylic Acid to purify, soothe, and visibly clear acne-prone skin.",
-    shopNow: "Shop The Complete Set",
+    shopNow: "Order Now",
     discoverProducts: "Explore Products",
     bundleOffer: "Complete 4-Piece Routine (Best Seller)",
     saveBadge: "Save 25%",
@@ -106,20 +144,35 @@ const translations = {
     feat3Desc: "94% of users report clearer skin, fewer breakouts, and balanced oil production.",
     catalogTitle: "The 4 Skincare Essentials",
     addToCart: "Add to Cart",
-    buyNow: "Buy Now",
+    buyNow: "Order Now",
     blogTitle: "Skincare Journal & Tips",
-    checkoutTitle: "Secure Stripe Checkout",
+    orderTitle: "Place Your Order",
     orderSummary: "Order Summary",
-    cardNumber: "Card Number",
-    expiry: "MM/YY",
-    cvc: "CVC",
-    payBtn: "Pay Securely via Stripe",
-    whatsappHelp: "Need skin advice? Chat with our specialist on WhatsApp",
+    codLabel: "Cash on Delivery (COD)",
+    codDesc: "Pay cash when you receive your package",
+    fullName: "Full Name",
+    phoneNumber: "Phone Number",
+    city: "City",
+    address: "Full Address",
+    notes: "Notes (Optional)",
+    notesPlaceholder: "E.g.: Near the mosque, 2nd floor...",
+    confirmOrder: "Confirm Order",
+    freeShipping: "Free Shipping 🚚",
+    thankYouTitle: "Thank You for Your Order! 🎉",
+    thankYouSubtitle: "Your order has been successfully placed.",
+    thankYouOrderId: "Order Number",
+    thankYouMessage: "Our team will contact you within 24h to confirm delivery.",
+    whatsappContact: "Contact Us on WhatsApp",
+    whatsappQuestion: "Have a question? Message us",
+    continueShopping: "Back to Shop",
     navHome: "Home",
     navShop: "Shop",
     navRoutine: "Routine",
     navBlog: "Journal",
-    navContact: "Contact"
+    navContact: "Contact",
+    remove: "Remove",
+    total: "Total",
+    sending: "Sending..."
   }
 };
 
@@ -130,7 +183,8 @@ const products = [
     arName: "الصابون السائل المنظف والمطهر (250 مل)",
     subtitle: "Nettoie • Purifie • Protège",
     arSubtitle: "تنظيف عميق • حماية • توازن الدهون",
-    price: "150 DH",
+    price: 150,
+    priceLabel: "150 DH",
     tag: "Étape 1 : Nettoyage",
     badge: "Indispensable"
   },
@@ -140,7 +194,8 @@ const products = [
     arName: "سيروم الوجه المركز المضاد للحبوب (30 مل)",
     subtitle: "Acide Salicylique + Aloe Vera haute concentration",
     arSubtitle: "تركيز مضاعف لتجفيف الحبوب وتضييق المسام",
-    price: "180 DH",
+    price: 180,
+    priceLabel: "180 DH",
     tag: "Étape 2 : Traitement Ciblé",
     badge: "Top Éclat"
   },
@@ -150,7 +205,8 @@ const products = [
     arName: "كريم الوجه المهدئ والمرطب (50 مل)",
     subtitle: "Purifie • Apaise • Rééquilibre",
     arSubtitle: "ترطيب بدون لمعان • تهدئة فورية",
-    price: "160 DH",
+    price: 160,
+    priceLabel: "160 DH",
     tag: "Étape 3 : Hydratation",
     badge: "Texture Légère"
   },
@@ -160,7 +216,8 @@ const products = [
     arName: "كريم موضعي لعلاج البثور السريعة",
     subtitle: "Action ciblée express sur les boutons",
     arSubtitle: "تطبيق موضعي سريع المفعول",
-    price: "130 DH",
+    price: 130,
+    priceLabel: "130 DH",
     tag: "Étape 4 : Urgence Boutons",
     badge: "Action Rapide"
   }
@@ -168,14 +225,175 @@ const products = [
 
 export default function App() {
   const [lang, setLang] = useState('fr');
-  const [cart, setCart] = useState([products[0], products[1]]);
-  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [cart, setCart] = useState([]);
+  const [orderOpen, setOrderOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [page, setPage] = useState('shop'); // 'shop' | 'thankyou'
+  const [orderId, setOrderId] = useState('');
+  const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState('');
+  
+  // Form fields
+  const [form, setForm] = useState({
+    fullName: '',
+    phone: '',
+    city: '',
+    address: '',
+    notes: ''
+  });
+
   const t = translations[lang];
   const isRTL = lang === 'ar';
+  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
 
-  const totalPrice = cart.reduce((acc, item) => acc + parseInt(item.price), 0);
+  const updateForm = (field, value) => {
+    setForm(prev => ({ ...prev, [field]: value }));
+    setFormError('');
+  };
 
+  const handleSubmitOrder = async () => {
+    // Validation
+    if (!form.fullName.trim() || !form.phone.trim() || !form.city.trim() || !form.address.trim()) {
+      setFormError(isRTL ? 'المرجو ملء جميع الحقول المطلوبة' : 'Merci de remplir tous les champs obligatoires.');
+      return;
+    }
+
+    if (cart.length === 0) {
+      setFormError(isRTL ? 'السلة فارغة' : 'Votre panier est vide.');
+      return;
+    }
+
+    setSending(true);
+    setFormError('');
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: form.fullName,
+          phone: form.phone,
+          city: form.city,
+          address: form.address,
+          notes: form.notes,
+          items: cart.map(item => ({
+            id: item.id,
+            name: item.name,
+            price: item.price
+          })),
+          total: totalPrice
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setOrderId(data.orderId);
+        setPage('thankyou');
+        setOrderOpen(false);
+        setCart([]);
+        setForm({ fullName: '', phone: '', city: '', address: '', notes: '' });
+        window.scrollTo(0, 0);
+      } else {
+        setFormError(data.error || 'Erreur. Réessayez.');
+      }
+    } catch (err) {
+      setFormError(isRTL ? 'خطأ في الاتصال. حاولي مرة أخرى.' : 'Erreur de connexion. Réessayez.');
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const whatsappOrderUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Salam, ana ${form.fullName || '...'}, commande ${orderId}. Bghit nta9ed la livraison.`
+  )}`;
+
+  // ============================================
+  //  THANK YOU PAGE
+  // ============================================
+  if (page === 'thankyou') {
+    return (
+      <div className={`min-h-screen bg-[#FBF9F5] text-[#1E2922] font-sans antialiased ${isRTL ? 'rtl text-right' : 'ltr text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+        
+        {/* Top Bar */}
+        <div className="bg-[#2D4030] text-[#F7F4EE] text-xs py-2 px-4 text-center font-medium tracking-wide">
+          ✨ LYXENE PARIS — Botanical Skincare
+        </div>
+
+        {/* Thank You Content */}
+        <div className="max-w-lg mx-auto px-6 py-20 text-center">
+          
+          {/* Success Icon */}
+          <div className="w-24 h-24 mx-auto mb-8 bg-gradient-to-br from-[#2D4030] to-[#405844] rounded-full flex items-center justify-center shadow-lg">
+            <CheckCircle className="w-12 h-12 text-white" />
+          </div>
+
+          <h1 className="text-3xl md:text-4xl font-serif font-bold text-[#2D4030] mb-4">
+            {t.thankYouTitle}
+          </h1>
+          
+          <p className="text-gray-600 text-base mb-6">
+            {t.thankYouSubtitle}
+          </p>
+
+          {/* Order ID */}
+          <div className="bg-[#F2EDE4] rounded-2xl p-5 mb-6 border border-[#E5DEC8]">
+            <p className="text-xs text-[#A26D62] font-semibold uppercase tracking-wider mb-1">
+              {t.thankYouOrderId}
+            </p>
+            <p className="text-2xl font-bold text-[#2D4030] font-mono tracking-wider">
+              {orderId}
+            </p>
+          </div>
+
+          {/* Message */}
+          <div className="bg-white rounded-2xl p-5 mb-8 border border-[#E8E1D5]">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <Truck className="w-5 h-5 text-[#2D4030]" />
+              <span className="text-sm font-semibold text-[#2D4030]">{t.codLabel}</span>
+            </div>
+            <p className="text-sm text-gray-600">
+              {t.thankYouMessage}
+            </p>
+          </div>
+
+          {/* WhatsApp CTA */}
+          <a
+            href={whatsappOrderUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1fba59] text-white py-4 rounded-2xl font-bold text-sm shadow-lg hover:shadow-xl transition-all duration-300 mb-4"
+          >
+            <MessageCircle className="w-5 h-5 fill-current" />
+            {t.whatsappContact}
+          </a>
+
+          <p className="text-xs text-gray-500 mb-8">{t.whatsappQuestion}</p>
+
+          {/* Back to shop */}
+          <button
+            onClick={() => { setPage('shop'); setOrderId(''); }}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#2D4030] hover:text-[#A26D62] transition"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {t.continueShopping}
+          </button>
+        </div>
+
+        {/* Footer */}
+        <footer className="bg-[#2D4030] text-[#F7F4EE] py-8 px-6">
+          <div className="max-w-6xl mx-auto text-center text-xs text-gray-300">
+            <span className="font-serif font-bold text-lg text-white block mb-1">LYXENE PARIS</span>
+            <p>© 2026 — Tous droits réservés.</p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+
+  // ============================================
+  //  MAIN SHOP PAGE
+  // ============================================
   return (
     <div className={`min-h-screen bg-[#FBF9F5] text-[#1E2922] font-sans antialiased ${isRTL ? 'rtl text-right' : 'ltr text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       
@@ -214,7 +432,7 @@ export default function App() {
 
           <div className="flex items-center gap-4">
             <button 
-              onClick={() => setCheckoutOpen(true)}
+              onClick={() => setOrderOpen(true)}
               className="relative p-2.5 rounded-full bg-[#EFEAE1] hover:bg-[#E3DCD0] text-[#2D4030] transition"
             >
               <ShoppingBag className="w-5 h-5" />
@@ -225,10 +443,10 @@ export default function App() {
               )}
             </button>
             <button 
-              onClick={() => setCheckoutOpen(true)}
+              onClick={() => setOrderOpen(true)}
               className="hidden sm:inline-flex items-center gap-2 bg-[#2D4030] text-[#F7F4EE] px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#202E23] transition shadow-sm"
             >
-              <CreditCard className="w-4 h-4" />
+              <Package className="w-4 h-4" />
               {t.shopNow}
             </button>
           </div>
@@ -259,7 +477,11 @@ export default function App() {
               </div>
             </div>
             <button 
-              onClick={() => setCheckoutOpen(true)}
+              onClick={() => {
+                // Add all 4 products as the bundle
+                setCart([...products]);
+                setOrderOpen(true);
+              }}
               className="bg-[#2D4030] hover:bg-[#202E23] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow"
             >
               {t.buyNow}
@@ -267,6 +489,10 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-6 pt-2 text-xs text-gray-500 font-medium">
+            <div className="flex items-center gap-1.5">
+              <Truck className="w-4 h-4 text-[#2D4030]" />
+              <span>{t.freeShipping}</span>
+            </div>
             <div className="flex items-center gap-1.5">
               <Leaf className="w-4 h-4 text-[#2D4030]" />
               <span>{isRTL ? "مكونات طبيعية" : "Cruelty Free & Bio"}</span>
@@ -336,13 +562,13 @@ export default function App() {
                 </div>
 
                 <div className="mt-6 pt-3 border-t border-[#EFEAE1] flex items-center justify-between">
-                  <span className="font-bold text-base text-[#2D4030]">{p.price}</span>
+                  <span className="font-bold text-base text-[#2D4030]">{p.priceLabel}</span>
                   <button 
                     onClick={() => {
                       if (!cart.find(item => item.id === p.id)) {
                         setCart([...cart, p]);
                       }
-                      setCheckoutOpen(true);
+                      setOrderOpen(true);
                     }}
                     className="bg-[#2D4030] hover:bg-[#202E23] text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition"
                   >
@@ -355,99 +581,176 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. Checkout Drawer / Modal (Stripe Style) */}
-      {checkoutOpen && (
+      {/* 5. COD Order Drawer */}
+      {orderOpen && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-end">
-          <div className="w-full max-w-md bg-[#FBF9F5] h-full shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
-            <div>
-              <div className="flex items-center justify-between pb-4 border-b border-[#E8E1D5]">
-                <div className="flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-[#2D4030]" />
-                  <h3 className="font-serif font-bold text-lg text-[#2D4030]">{t.checkoutTitle}</h3>
-                </div>
-                <button onClick={() => setCheckoutOpen(false)} className="p-1 text-gray-400 hover:text-black">
-                  <X className="w-5 h-5" />
-                </button>
+          <div className="w-full max-w-md bg-[#FBF9F5] h-full shadow-2xl p-6 flex flex-col overflow-y-auto">
+            
+            {/* Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-[#E8E1D5] mb-4">
+              <div className="flex items-center gap-2">
+                <Package className="w-5 h-5 text-[#2D4030]" />
+                <h3 className="font-serif font-bold text-lg text-[#2D4030]">{t.orderTitle}</h3>
               </div>
+              <button onClick={() => setOrderOpen(false)} className="p-1 text-gray-400 hover:text-black">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-              {/* Items in cart */}
-              <div className="py-4 space-y-3">
-                <p className="text-xs font-bold text-[#A26D62] uppercase tracking-wider">{t.orderSummary}</p>
-                {cart.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center text-xs bg-[#F2EDE4] p-3 rounded-xl">
-                    <div>
-                      <p className="font-bold text-[#2D4030]">{isRTL ? item.arName : item.name}</p>
-                      <p className="text-gray-500 text-[11px]">{item.price}</p>
+            {/* Cart Items */}
+            <div className="mb-4">
+              <p className="text-xs font-bold text-[#A26D62] uppercase tracking-wider mb-3">{t.orderSummary}</p>
+              {cart.length === 0 ? (
+                <div className="text-center py-8 text-gray-400 text-sm">
+                  {isRTL ? "السلة فارغة" : "Votre panier est vide"}
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {cart.map((item) => (
+                    <div key={item.id} className="flex justify-between items-center text-xs bg-[#F2EDE4] p-3 rounded-xl">
+                      <div>
+                        <p className="font-bold text-[#2D4030]">{isRTL ? item.arName : item.name}</p>
+                        <p className="text-gray-500 text-[11px]">{item.priceLabel}</p>
+                      </div>
+                      <button 
+                        onClick={() => setCart(cart.filter(i => i.id !== item.id))}
+                        className="text-red-500 text-[11px] hover:underline"
+                      >
+                        {t.remove}
+                      </button>
                     </div>
-                    <button 
-                      onClick={() => setCart(cart.filter(i => i.id !== item.id))}
-                      className="text-red-500 text-[11px] hover:underline"
-                    >
-                      Supprimer
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              {/* Stripe Payment Form Mockup */}
-              <div className="mt-4 space-y-4 bg-white p-4 rounded-2xl border border-[#E8E1D5]">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-gray-700 flex items-center gap-1.5">
-                    <CreditCard className="w-4 h-4 text-[#2D4030]" /> Paiement par Carte
-                  </span>
-                  <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Stripe Secure</span>
+                  ))}
                 </div>
+              )}
+            </div>
 
+            {/* COD Badge */}
+            <div className="flex items-center gap-3 p-3 bg-[#E8F5E9] rounded-xl border border-[#C8E6C9] mb-4">
+              <Truck className="w-5 h-5 text-[#2D4030] flex-shrink-0" />
+              <div>
+                <p className="text-xs font-bold text-[#2D4030]">{t.codLabel}</p>
+                <p className="text-[11px] text-gray-600">{t.codDesc}</p>
+              </div>
+            </div>
+
+            {/* Order Form */}
+            {cart.length > 0 && (
+              <div className="space-y-3 flex-1">
+                
+                {/* Full Name */}
                 <div>
-                  <label className="text-[11px] text-gray-500 block mb-1">{t.cardNumber}</label>
-                  <input 
-                    type="text" 
-                    placeholder="4242 •••• •••• 4242" 
-                    className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-[#FBF9F5] focus:outline-none focus:border-[#2D4030]"
+                  <label className="text-[11px] text-gray-500 flex items-center gap-1 mb-1">
+                    <User className="w-3 h-3" /> {t.fullName} *
+                  </label>
+                  <input
+                    type="text"
+                    value={form.fullName}
+                    onChange={(e) => updateForm('fullName', e.target.value)}
+                    placeholder={isRTL ? "الاسم الكامل" : "Ex: Fatima Zahra"}
+                    className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-white focus:outline-none focus:border-[#2D4030] focus:ring-1 focus:ring-[#2D4030]/20 transition"
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="text-[11px] text-gray-500 block mb-1">{t.expiry}</label>
-                    <input 
-                      type="text" 
-                      placeholder="MM / YY" 
-                      className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-[#FBF9F5] focus:outline-none focus:border-[#2D4030]"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-[11px] text-gray-500 block mb-1">{t.cvc}</label>
-                    <input 
-                      type="text" 
-                      placeholder="123" 
-                      className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-[#FBF9F5] focus:outline-none focus:border-[#2D4030]"
-                    />
-                  </div>
+                {/* Phone */}
+                <div>
+                  <label className="text-[11px] text-gray-500 flex items-center gap-1 mb-1">
+                    <Phone className="w-3 h-3" /> {t.phoneNumber} *
+                  </label>
+                  <input
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => updateForm('phone', e.target.value)}
+                    placeholder="06XXXXXXXX"
+                    className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-white focus:outline-none focus:border-[#2D4030] focus:ring-1 focus:ring-[#2D4030]/20 transition"
+                    dir="ltr"
+                  />
                 </div>
-              </div>
-            </div>
 
-            <div className="pt-6 border-t border-[#E8E1D5]">
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-sm font-semibold text-gray-600">Total:</span>
-                <span className="text-xl font-bold text-[#2D4030]">{totalPrice} DH</span>
+                {/* City */}
+                <div>
+                  <label className="text-[11px] text-gray-500 flex items-center gap-1 mb-1">
+                    <MapPin className="w-3 h-3" /> {t.city} *
+                  </label>
+                  <input
+                    type="text"
+                    value={form.city}
+                    onChange={(e) => updateForm('city', e.target.value)}
+                    placeholder={isRTL ? "المدينة" : "Ex: Casablanca"}
+                    className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-white focus:outline-none focus:border-[#2D4030] focus:ring-1 focus:ring-[#2D4030]/20 transition"
+                  />
+                </div>
+
+                {/* Address */}
+                <div>
+                  <label className="text-[11px] text-gray-500 flex items-center gap-1 mb-1">
+                    <MapPin className="w-3 h-3" /> {t.address} *
+                  </label>
+                  <textarea
+                    value={form.address}
+                    onChange={(e) => updateForm('address', e.target.value)}
+                    placeholder={isRTL ? "العنوان الكامل" : "Ex: Hay Mohammadi, Rue 12, N°5"}
+                    rows={2}
+                    className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-white focus:outline-none focus:border-[#2D4030] focus:ring-1 focus:ring-[#2D4030]/20 transition resize-none"
+                  />
+                </div>
+
+                {/* Notes */}
+                <div>
+                  <label className="text-[11px] text-gray-500 flex items-center gap-1 mb-1">
+                    <FileText className="w-3 h-3" /> {t.notes}
+                  </label>
+                  <input
+                    type="text"
+                    value={form.notes}
+                    onChange={(e) => updateForm('notes', e.target.value)}
+                    placeholder={t.notesPlaceholder}
+                    className="w-full text-xs p-2.5 rounded-lg border border-[#E8E1D5] bg-white focus:outline-none focus:border-[#2D4030] focus:ring-1 focus:ring-[#2D4030]/20 transition"
+                  />
+                </div>
+
+                {/* Error Message */}
+                {formError && (
+                  <div className="text-xs text-red-600 bg-red-50 p-2.5 rounded-lg border border-red-200">
+                    {formError}
+                  </div>
+                )}
               </div>
-              <button 
-                onClick={() => alert('Redirection vers Stripe Checkout API...')}
-                className="w-full bg-[#2D4030] hover:bg-[#202E23] text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition"
-              >
-                <Lock className="w-3.5 h-3.5" />
-                {t.payBtn} ({totalPrice} DH)
-              </button>
-            </div>
+            )}
+
+            {/* Footer / Submit */}
+            {cart.length > 0 && (
+              <div className="pt-4 mt-4 border-t border-[#E8E1D5]">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-sm font-semibold text-gray-600">{t.total}:</span>
+                  <span className="text-xl font-bold text-[#2D4030]">{totalPrice} DH</span>
+                </div>
+                <button 
+                  onClick={handleSubmitOrder}
+                  disabled={sending}
+                  className="w-full bg-[#2D4030] hover:bg-[#202E23] disabled:bg-[#2D4030]/60 text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition"
+                >
+                  {sending ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      {t.sending}
+                    </>
+                  ) : (
+                    <>
+                      <Truck className="w-4 h-4" />
+                      {t.confirmOrder} — {totalPrice} DH
+                    </>
+                  )}
+                </button>
+                <p className="text-[10px] text-center text-gray-400 mt-2">{t.freeShipping}</p>
+              </div>
+            )}
           </div>
         </div>
       )}
 
       {/* 6. Floating WhatsApp Button */}
       <a 
-        href="https://wa.me/212600000000?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxene%20anti-acné" 
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxene%20anti-acné`}
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition flex items-center gap-2 group"
@@ -463,7 +766,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-300">
           <div>
             <span className="font-serif font-bold text-lg text-white block">LYXENE PARIS</span>
-            <p className="mt-1">© 2026 yassirshop.com - Tous droits réservés.</p>
+            <p className="mt-1">© 2026 — Tous droits réservés.</p>
           </div>
           <div className="flex gap-6">
             <a href="#" className="hover:underline">Conditions Générales</a>

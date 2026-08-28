@@ -6,8 +6,6 @@ services:
     buildCommand: npm install
     startCommand: npm start
     envVars:
-      - key: STRIPE_SECRET_KEY
-        sync: false
       - key: FRONTEND_URL
         value: https://frontend-self-five-87.vercel.app
       - key: NODE_ENV

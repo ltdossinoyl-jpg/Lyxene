@@ -1,7 +1,7 @@
 {
   "name": "lyxene-backend",
   "version": "1.0.0",
-  "description": "Lyxene Skincare — Stripe Payment Backend",
+  "description": "Lyxene Skincare — COD Lead Collection Backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,8 +10,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "express": "^4.21.2",
-    "stripe": "^17.7.0"
+    "express": "^4.21.2"
   },
   "engines": {
     "node": ">=18.0.0"
