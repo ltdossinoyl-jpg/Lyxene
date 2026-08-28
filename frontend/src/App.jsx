@@ -181,45 +181,57 @@ const products = [
     id: 1,
     name: "Savon Liquide Anti-Acné (250 ml)",
     arName: "الصابون السائل المنظف والمطهر (250 مل)",
-    subtitle: "Nettoie • Purifie • Protège",
-    arSubtitle: "تنظيف عميق • حماية • توازن الدهون",
-    price: 150,
-    priceLabel: "150 DH",
+    enName: "Anti-Acne Liquid Cleanser (250 ml)",
+    subtitle: "Nettoie en profondeur, élimine l'excès de sébum et prévient l'apparition de nouvelles imperfections. Enrichi en Aloe Vera & Acide Salicylique.",
+    arSubtitle: "تنظيف عميق للمسام، إزالة الزيوت الزائدة ومنع ظهور الحبوب. بخلاصة الألوفيرا وحمض الساليسيليك.",
+    enSubtitle: "Deep-cleanses pores, removes excess sebum and prevents new breakouts. Enriched with Aloe Vera & Salicylic Acid.",
+    price: 149,
+    priceLabel: "149 DH",
     tag: "Étape 1 : Nettoyage",
-    badge: "Indispensable"
+    badge: "Indispensable",
+    image: "/images/savon-liquide.jpg"
   },
   {
     id: 2,
-    name: "Sérum Visage Anti-Acné Concentré (30 ml)",
-    arName: "سيروم الوجه المركز المضاد للحبوب (30 مل)",
-    subtitle: "Acide Salicylique + Aloe Vera haute concentration",
-    arSubtitle: "تركيز مضاعف لتجفيف الحبوب وتضييق المسام",
-    price: 180,
-    priceLabel: "180 DH",
+    name: "Sérum Visage Concentré Anti-Acné (50 ml)",
+    arName: "سيروم الوجه المركز المضاد للحبوب (50 مل)",
+    enName: "Concentrated Anti-Acne Face Serum (50 ml)",
+    subtitle: "Formule concentrée à l'Acide Salicylique qui pénètre en profondeur pour resserrer les pores, réduire les rougeurs et accélérer la cicatrisation.",
+    arSubtitle: "تركيبة مركزة بحمض الساليسيليك تتغلغل بعمق لتضييق المسام وتقليل الاحمرار وتسريع التئام البشرة.",
+    enSubtitle: "Concentrated Salicylic Acid formula that penetrates deep to tighten pores, reduce redness and accelerate skin healing.",
+    price: 189,
+    priceLabel: "189 DH",
     tag: "Étape 2 : Traitement Ciblé",
-    badge: "Top Éclat"
+    badge: "Best Seller",
+    image: "/images/serum-visage.jpg"
   },
   {
     id: 3,
-    name: "Crème Visage Apaisante & Rééquilibrante (50 ml)",
+    name: "Crème Visage Anti-Acné (50 ml)",
     arName: "كريم الوجه المهدئ والمرطب (50 مل)",
-    subtitle: "Purifie • Apaise • Rééquilibre",
-    arSubtitle: "ترطيب بدون لمعان • تهدئة فورية",
-    price: 160,
-    priceLabel: "160 DH",
+    enName: "Anti-Acne Face Cream (50 ml)",
+    subtitle: "Hydrate sans effet gras, apaise les irritations et rééquilibre la production de sébum. Texture légère qui fond instantanément dans la peau.",
+    arSubtitle: "ترطيب بدون لمعان، تهدئة الالتهابات وإعادة توازن إفراز الدهون. ملمس خفيف يمتص فوراً.",
+    enSubtitle: "Oil-free moisture, soothes irritation and rebalances sebum production. Lightweight texture that melts instantly into skin.",
+    price: 169,
+    priceLabel: "169 DH",
     tag: "Étape 3 : Hydratation",
-    badge: "Texture Légère"
+    badge: "Texture Légère",
+    image: "/images/creme-visage.jpg"
   },
   {
     id: 4,
-    name: "Crème Tube Soin Localisé Anti-Acné",
-    arName: "كريم موضعي لعلاج البثور السريعة",
-    subtitle: "Action ciblée express sur les boutons",
-    arSubtitle: "تطبيق موضعي سريع المفعول",
-    price: 130,
-    priceLabel: "130 DH",
+    name: "Soin Localisé Anti-Boutons",
+    arName: "كريم موضعي سريع المفعول لعلاج البثور",
+    enName: "Targeted Spot Treatment Cream",
+    subtitle: "Soin SOS express : appliquez directement sur le bouton pour le réduire en quelques heures. Action ciblée anti-inflammatoire et antibactérienne.",
+    arSubtitle: "علاج طوارئ سريع: ضعيه مباشرة على الحبة لتقليصها في ساعات. مضاد للالتهاب والبكتيريا.",
+    enSubtitle: "SOS express care: apply directly on the spot to reduce it in hours. Targeted anti-inflammatory and antibacterial action.",
+    price: 129,
+    priceLabel: "129 DH",
     tag: "Étape 4 : Urgence Boutons",
-    badge: "Action Rapide"
+    badge: "Action Rapide",
+    image: "/images/creme-tube.jpg"
   }
 ];
 
@@ -412,10 +424,12 @@ export default function App() {
       {/* 2. Navigation Header */}
       <header className="sticky top-0 z-40 bg-[#FBF9F5]/90 backdrop-blur-md border-b border-[#E8E1D5]">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-[#2D4030] flex items-center justify-center text-[#F7F4EE] font-serif font-bold text-xl">
-              L
-            </div>
+          <div className="flex items-center gap-3">
+            <img 
+              src="/images/logo.png" 
+              alt="LYXENE PARIS Logo" 
+              className="w-11 h-11 object-contain rounded-full shadow-sm"
+            />
             <div>
               <span className="text-xl font-bold tracking-widest text-[#2D4030] block font-serif">LYXENE</span>
               <span className="text-[10px] tracking-wider text-[#A26D62] uppercase block font-semibold">Botanical Skincare</span>
@@ -443,7 +457,10 @@ export default function App() {
               )}
             </button>
             <button 
-              onClick={() => setOrderOpen(true)}
+              onClick={() => {
+                if (cart.length === 0) setCart([...products]);
+                setOrderOpen(true);
+              }}
               className="hidden sm:inline-flex items-center gap-2 bg-[#2D4030] text-[#F7F4EE] px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#202E23] transition shadow-sm"
             >
               <Package className="w-4 h-4" />
@@ -478,7 +495,6 @@ export default function App() {
             </div>
             <button 
               onClick={() => {
-                // Add all 4 products as the bundle
                 setCart([...products]);
                 setOrderOpen(true);
               }}
@@ -504,28 +520,28 @@ export default function App() {
           </div>
         </div>
 
-        {/* Product Visual Card */}
-        <div className="relative">
-          <div className="aspect-[4/5] bg-gradient-to-tr from-[#EFEAE1] via-[#F4EFE6] to-[#E8E1D5] rounded-3xl p-8 border border-[#DFD6C7] flex flex-col justify-between shadow-lg relative overflow-hidden">
-            <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#2D4030]/5 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="flex justify-between items-start z-10">
-              <span className="bg-[#2D4030] text-white text-[11px] px-3 py-1 rounded-full font-semibold">Gamme Complète</span>
-              <div className="flex text-amber-500">
+        {/* Hero Product Visual Card with Real Image */}
+        <div className="relative group">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#DFD6C7] bg-[#EFEAE1]">
+            <img 
+              src="/images/hero-products.jpg" 
+              alt="Gamme Complète LYXENE Skincare" 
+              className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
+              <span className="bg-[#2D4030]/90 backdrop-blur-sm text-white text-[11px] px-3 py-1 rounded-full font-semibold shadow">
+                {isRTL ? "المجموعة المتكاملة" : "Gamme Complète 4-en-1"}
+              </span>
+              <div className="flex text-amber-400 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full shadow">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
+                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
                 ))}
               </div>
             </div>
 
-            <div className="text-center py-10 z-10">
-              <div className="font-serif text-5xl font-extrabold tracking-widest text-[#2D4030]/20 mb-2">LYXENE</div>
-              <p className="text-sm font-semibold text-[#2D4030]">Savon • Sérum • Crème • Soin Ciblé</p>
-              <p className="text-xs text-[#A26D62] mt-1 font-medium">Aloe Vera & Acide Salicylique</p>
-            </div>
-
-            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-[#E3DCD0] flex items-center justify-between z-10">
+            <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#E3DCD0] flex items-center justify-between shadow-lg">
               <div>
-                <p className="text-xs text-gray-500">{isRTL ? "النتيجة بعد أسبوعين" : "Avis vérifié"}</p>
+                <p className="text-[11px] text-gray-500">{isRTL ? "نتيجة مثبتة بعد 14 يوم" : "Avis client vérifié"}</p>
                 <p className="text-xs font-bold text-[#2D4030]">"Bouti diali safat w l'rougeur mcha f 10 iyam!"</p>
               </div>
               <span className="text-xs font-bold text-[#A26D62]">- Salma M.</span>
@@ -534,35 +550,48 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. Product Catalog (4 Products) */}
+      {/* 4. Product Catalog (4 Products with Real Photos) */}
       <section id="products" className="py-20 bg-[#F4EFE6] border-y border-[#E8E1D5] px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-xl mx-auto mb-14">
             <h2 className="text-3xl font-serif font-bold text-[#2D4030]">{t.catalogTitle}</h2>
             <div className="w-12 h-0.5 bg-[#A26D62] mx-auto mt-3 mb-3"></div>
-            <p className="text-xs text-gray-600">Formule douce pour peaux grasses, mixtes et à tendance acnéique.</p>
+            <p className="text-xs text-gray-600">
+              {isRTL ? "تركيبة طبية مهدئة للبشرة الدهنية والمعرضة لحب الشباب" : "Formule douce pour peaux grasses, mixtes et à tendance acnéique."}
+            </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((p) => (
-              <div key={p.id} className="bg-[#FBF9F5] rounded-2xl p-5 border border-[#E5DEC8] flex flex-col justify-between hover:shadow-md transition">
+              <div key={p.id} className="bg-[#FBF9F5] rounded-2xl p-5 border border-[#E5DEC8] flex flex-col justify-between hover:shadow-xl transition-all duration-300 group">
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-[10px] font-bold text-[#A26D62] uppercase tracking-wider">{p.tag}</span>
                     <span className="text-[10px] bg-[#EFEAE1] text-[#2D4030] font-semibold px-2 py-0.5 rounded-full">{p.badge}</span>
                   </div>
-                  <div className="h-40 bg-[#EFEAE1] rounded-xl mb-4 flex items-center justify-center text-center p-4">
-                    <div>
-                      <span className="font-serif text-lg font-bold text-[#2D4030] block">LYXENE</span>
-                      <span className="text-xs text-gray-500">{isRTL ? p.arName : p.name}</span>
-                    </div>
+                  
+                  {/* Real Product Image */}
+                  <div className="overflow-hidden rounded-xl mb-4 bg-white border border-[#EFEAE1] aspect-square flex items-center justify-center">
+                    <img 
+                      src={p.image} 
+                      alt={isRTL ? p.arName : (lang === 'en' ? p.enName : p.name)}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <h3 className="font-bold text-sm text-[#2D4030]">{isRTL ? p.arName : p.name}</h3>
-                  <p className="text-xs text-gray-500 mt-1">{isRTL ? p.arSubtitle : p.subtitle}</p>
+
+                  <h3 className="font-bold text-sm text-[#2D4030]">
+                    {isRTL ? p.arName : (lang === 'en' ? p.enName : p.name)}
+                  </h3>
+                  <p className="text-xs text-gray-500 mt-1.5 leading-relaxed">
+                    {isRTL ? p.arSubtitle : (lang === 'en' ? p.enSubtitle : p.subtitle)}
+                  </p>
                 </div>
 
                 <div className="mt-6 pt-3 border-t border-[#EFEAE1] flex items-center justify-between">
-                  <span className="font-bold text-base text-[#2D4030]">{p.priceLabel}</span>
+                  <div>
+                    <span className="font-bold text-base text-[#2D4030]">{p.priceLabel}</span>
+                    <span className="block text-[10px] text-green-700 font-medium">{t.freeShipping}</span>
+                  </div>
                   <button 
                     onClick={() => {
                       if (!cart.find(item => item.id === p.id)) {
@@ -570,7 +599,7 @@ export default function App() {
                       }
                       setOrderOpen(true);
                     }}
-                    className="bg-[#2D4030] hover:bg-[#202E23] text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition"
+                    className="bg-[#2D4030] hover:bg-[#202E23] text-white px-3.5 py-2 rounded-xl text-xs font-semibold transition shadow-sm"
                   >
                     {t.addToCart}
                   </button>
@@ -607,8 +636,13 @@ export default function App() {
               ) : (
                 <div className="space-y-2">
                   {cart.map((item) => (
-                    <div key={item.id} className="flex justify-between items-center text-xs bg-[#F2EDE4] p-3 rounded-xl">
-                      <div>
+                    <div key={item.id} className="flex justify-between items-center text-xs bg-[#F2EDE4] p-3 rounded-xl gap-3">
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        className="w-10 h-10 rounded-lg object-cover bg-white border border-[#E5DEC8]"
+                      />
+                      <div className="flex-1">
                         <p className="font-bold text-[#2D4030]">{isRTL ? item.arName : item.name}</p>
                         <p className="text-gray-500 text-[11px]">{item.priceLabel}</p>
                       </div>
@@ -727,7 +761,7 @@ export default function App() {
                 <button 
                   onClick={handleSubmitOrder}
                   disabled={sending}
-                  className="w-full bg-[#2D4030] hover:bg-[#202E23] disabled:bg-[#2D4030]/60 text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition"
+                  className="w-full bg-[#2D4030] hover:bg-[#202E23] disabled:bg-[#2D4030]/60 text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition cursor-pointer"
                 >
                   {sending ? (
                     <>
@@ -764,9 +798,16 @@ export default function App() {
       {/* 7. Footer */}
       <footer className="bg-[#2D4030] text-[#F7F4EE] py-12 px-6 border-t border-[#405844]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-300">
-          <div>
-            <span className="font-serif font-bold text-lg text-white block">LYXENE PARIS</span>
-            <p className="mt-1">© 2026 — Tous droits réservés.</p>
+          <div className="flex items-center gap-3">
+            <img 
+              src="/images/logo.png" 
+              alt="LYXENE PARIS Logo" 
+              className="w-10 h-10 object-contain rounded-full bg-white/10 p-0.5 border border-[#405844]"
+            />
+            <div>
+              <span className="font-serif font-bold text-lg text-white block">LYXENE PARIS</span>
+              <p className="mt-0.5 text-gray-400">© 2026 — Tous droits réservés.</p>
+            </div>
           </div>
           <div className="flex gap-6">
             <a href="#" className="hover:underline">Conditions Générales</a>
@@ -779,3 +820,4 @@ export default function App() {
     </div>
   );
 }
+

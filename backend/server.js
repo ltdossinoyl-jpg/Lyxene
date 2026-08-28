@@ -9,21 +9,10 @@ const path = require('path');
 const app = express();
 app.use(express.json());
 
-// CORS — Allow requests from the Vercel frontend URL
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  'http://localhost:3000'
-].filter(Boolean);
+// CORS — Allow requests from all origins (Vercel deployments, custom domains, localhost)
+app.use(cors());
+app.options('*', cors());
 
-app.use(cors({ 
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Not allowed by CORS'));
-  }
-}));
 
 // Health check endpoint (for Render)
 app.get('/health', (req, res) => {
