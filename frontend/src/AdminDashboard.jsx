@@ -74,16 +74,16 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
         localStorage.setItem('lyxene_admin_session', 'true');
         fetchData();
       } else {
-        setLoginError('Mot de passe incorrect. (Par défaut: admin2026)');
+        setLoginError('Mot de passe incorrect.');
       }
     } catch (err) {
       // Fallback local check if backend offline
-      if (password === 'admin2026') {
+      if (password === 'yassir2027') {
         setIsAuthenticated(true);
         localStorage.setItem('lyxene_admin_session', 'true');
         fetchData();
       } else {
-        setLoginError('Erreur de connexion au serveur.');
+        setLoginError('Mot de passe incorrect ou erreur de connexion.');
       }
     } finally {
       setLoginLoading(false);
@@ -253,7 +253,6 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
                 className="w-full text-sm p-3.5 rounded-xl border border-[#DFD6C7] bg-white focus:outline-none focus:border-[#2D4030] focus:ring-2 focus:ring-[#2D4030]/20"
                 autoFocus
               />
-              <p className="text-[11px] text-gray-400 mt-1">Par défaut : <code className="bg-gray-100 px-1 py-0.5 rounded text-gray-600">admin2026</code></p>
             </div>
 
             {loginError && (

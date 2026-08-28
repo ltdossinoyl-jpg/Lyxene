@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 app.options('*', cors());
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin2026';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'yassir2027';
 
 // Health check endpoint (for Render)
 app.get('/health', (req, res) => {
