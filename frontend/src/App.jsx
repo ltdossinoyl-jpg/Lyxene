@@ -34,9 +34,9 @@ const translations = {
     shopNow: "Commander Maintenant",
     discoverProducts: "Découvrir la Gamme",
     bundleOffer: "Pack Complet 4-en-1 (Best-Seller)",
-    saveBadge: "Économisez 25%",
-    pricePack: "490 DH",
-    oldPricePack: "650 DH",
+    saveBadge: "Économisez 55%",
+    pricePack: "289 DH",
+    oldPricePack: "636 DH",
     featuresTitle: "Pourquoi Choisir LYXENE ?",
     feat1Title: "Formule Clinique & Douce",
     feat1Desc: "Enrichie en Acide Salicylique pour déboucher les pores sans agresser la barrière cutanée.",
@@ -84,9 +84,9 @@ const translations = {
     shopNow: "اطلبي الآن",
     discoverProducts: "اكتشفي المنتجات",
     bundleOffer: "المجموعة الكاملة 4 في 1 (الأكثر مبيعاً)",
-    saveBadge: "خصم 25%",
-    pricePack: "490 درهم",
-    oldPricePack: "650 درهم",
+    saveBadge: "خصم 55%",
+    pricePack: "289 درهم",
+    oldPricePack: "636 درهم",
     featuresTitle: "لماذا تختارين LYXENE ؟",
     feat1Title: "تركيبة طبية لطيفة",
     feat1Desc: "بحمض الساليسيليك الفعّال في تنظيف المسام بعمق دون تجفيف البشرة.",
@@ -134,9 +134,9 @@ const translations = {
     shopNow: "Order Now",
     discoverProducts: "Explore Products",
     bundleOffer: "Complete 4-Piece Routine (Best Seller)",
-    saveBadge: "Save 25%",
-    pricePack: "$49 / 490 DH",
-    oldPricePack: "$65 / 650 DH",
+    saveBadge: "Save 55%",
+    pricePack: "289 DH",
+    oldPricePack: "636 DH",
     featuresTitle: "Why Choose LYXENE ?",
     feat1Title: "Clinical Grade & Gentle",
     feat1Desc: "Salicylic acid unclogs deep pores without damaging your delicate skin moisture barrier.",
@@ -237,6 +237,22 @@ const INITIAL_PRODUCTS = [
   }
 ];
 
+const PACK_PRODUCT = {
+  id: 99,
+  name: "Pack Complet Anti-Acné 4-en-1",
+  arName: "المجموعة الكاملة لعلاج حب الشباب 4 في 1",
+  enName: "Complete Anti-Acne 4-in-1 Pack",
+  subtitle: "La routine complète anti-acné : Savon Liquide + Sérum Visage + Crème Visage + Soin Localisé. Tout ce qu'il faut pour une peau nette et éclatante.",
+  arSubtitle: "الروتين الكامل لعلاج حب الشباب: صابون سائل + سيروم + كريم وجه + كريم موضعي. كل ما تحتاجينه لبشرة صافية ومشرقة.",
+  enSubtitle: "The complete anti-acne routine: Liquid Cleanser + Face Serum + Face Cream + Spot Treatment. Everything you need for clear, glowing skin.",
+  price: 289,
+  priceLabel: "289 DH",
+  tag: "Pack Complet",
+  badge: "Offre Spéciale",
+  image: "/images/pack-complet.jpg",
+  isPack: true
+};
+
 export default function App() {
   const [lang, setLang] = useState('fr');
   const [products, setProducts] = useState(INITIAL_PRODUCTS);
@@ -294,6 +310,12 @@ export default function App() {
   const t = translations[lang];
   const isRTL = lang === 'ar';
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+
+  // Helper: add the pack to cart and open order drawer
+  const orderPack = () => {
+    setCart([PACK_PRODUCT]);
+    setOrderOpen(true);
+  };
 
   const updateForm = (field, value) => {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -511,8 +533,8 @@ export default function App() {
             </button>
             <button 
               onClick={() => {
-                if (cart.length === 0) setCart([...products]);
-                setOrderOpen(true);
+                if (cart.length === 0) orderPack();
+                else setOrderOpen(true);
               }}
               className="hidden sm:inline-flex items-center gap-2 bg-[#2D4030] text-[#F7F4EE] px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#202E23] transition shadow-sm"
             >
@@ -547,10 +569,7 @@ export default function App() {
               </div>
             </div>
             <button 
-              onClick={() => {
-                setCart([...products]);
-                setOrderOpen(true);
-              }}
+              onClick={orderPack}
               className="bg-[#2D4030] hover:bg-[#202E23] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow"
             >
               {t.buyNow}
@@ -577,8 +596,8 @@ export default function App() {
         <div className="relative group">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#DFD6C7] bg-[#EFEAE1]">
             <img 
-              src="/images/hero-products.jpg" 
-              alt="Gamme Complète LYXENE Skincare" 
+              src="/images/pack-complet.jpg" 
+              alt="Pack Complet LYXENE Skincare" 
               className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
@@ -615,8 +634,8 @@ export default function App() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((p) => (
-              <div key={p.id} className="bg-[#FBF9F5] rounded-2xl p-5 border border-[#E5DEC8] flex flex-col justify-between hover:shadow-xl transition-all duration-300 group">
+            {products.filter(p => !p.isPack).map((p) => (
+              <div key={p.id} className="bg-[#FBF9F5] rounded-2xl p-5 border border-[#E5DEC8] flex flex-col hover:shadow-xl transition-all duration-300 group">
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-[10px] font-bold text-[#A26D62] uppercase tracking-wider">{p.tag}</span>
@@ -640,25 +659,49 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-[#EFEAE1] flex items-center justify-between">
-                  <div>
-                    <span className="font-bold text-base text-[#2D4030]">{p.priceLabel}</span>
-                    <span className="block text-[10px] text-green-700 font-medium">{t.freeShipping}</span>
-                  </div>
-                  <button 
-                    onClick={() => {
-                      if (!cart.find(item => item.id === p.id)) {
-                        setCart([...cart, p]);
-                      }
-                      setOrderOpen(true);
-                    }}
-                    className="bg-[#2D4030] hover:bg-[#202E23] text-white px-3.5 py-2 rounded-xl text-xs font-semibold transition shadow-sm"
-                  >
-                    {t.addToCart}
-                  </button>
+                <div className="mt-6 pt-3 border-t border-[#EFEAE1] flex items-center justify-center">
+                  <span className="text-[10px] text-[#2D4030] font-semibold flex items-center gap-1">
+                    <CheckCircle className="w-3.5 h-3.5 text-green-600" />
+                    {isRTL ? "متضمّن في المجموعة" : (lang === 'en' ? "Included in Pack" : "Inclus dans le Pack")}
+                  </span>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Pack Order CTA below products */}
+          <div className="mt-12 max-w-2xl mx-auto">
+            <div className="bg-[#FBF9F5] rounded-3xl p-6 md:p-8 border-2 border-[#2D4030]/20 shadow-xl flex flex-col md:flex-row items-center gap-6">
+              <img 
+                src="/images/pack-complet.jpg" 
+                alt="Pack Complet LYXENE" 
+                className="w-40 h-40 object-cover rounded-2xl border border-[#E5DEC8] shadow-md flex-shrink-0"
+              />
+              <div className="flex-1 text-center md:text-left">
+                <span className="inline-block text-[10px] font-bold text-white bg-[#A26D62] px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                  {isRTL ? "عرض خاص" : (lang === 'en' ? "Special Offer" : "Offre Spéciale")}
+                </span>
+                <h3 className="font-serif font-bold text-xl text-[#2D4030] mb-1">
+                  {isRTL ? "المجموعة الكاملة 4 في 1" : (lang === 'en' ? "Complete 4-in-1 Pack" : "Pack Complet 4-en-1")}
+                </h3>
+                <p className="text-xs text-gray-500 mb-3">
+                  {isRTL ? "جميع المنتجات الأربعة في عرض واحد" : (lang === 'en' ? "All 4 products in one special bundle" : "Les 4 produits réunis dans une offre unique")}
+                </p>
+                <div className="flex items-baseline gap-2 justify-center md:justify-start mb-4">
+                  <span className="text-2xl font-bold text-[#2D4030]">{t.pricePack}</span>
+                  <span className="text-sm line-through text-gray-400">{t.oldPricePack}</span>
+                  <span className="text-xs bg-[#2D4030] text-[#F7F4EE] px-2 py-0.5 rounded-md font-bold">{t.saveBadge}</span>
+                </div>
+                <button 
+                  onClick={orderPack}
+                  className="w-full md:w-auto bg-[#2D4030] hover:bg-[#202E23] text-white px-8 py-3 rounded-xl font-bold text-sm transition shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Truck className="w-4 h-4" />
+                  {t.shopNow} — {t.pricePack}
+                </button>
+                <p className="text-[10px] text-green-700 font-medium mt-2">{t.freeShipping}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

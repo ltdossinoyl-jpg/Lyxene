@@ -240,6 +240,22 @@ const DEFAULT_PRODUCTS = [
     tag: "Étape 4 : Urgence Boutons",
     badge: "Action Rapide",
     image: "/images/creme-tube.jpg"
+  },
+  {
+    id: 99,
+    name: "Pack Complet Anti-Acné 4-en-1",
+    arName: "المجموعة الكاملة لعلاج حب الشباب 4 في 1",
+    enName: "Complete Anti-Acne 4-in-1 Pack",
+    subtitle: "La routine complète anti-acné : Savon Liquide + Sérum Visage + Crème Visage + Soin Localisé. Tout ce qu'il faut pour une peau nette et éclatante.",
+    arSubtitle: "الروتين الكامل لعلاج حب الشباب: صابون سائل + سيروم + كريم وجه + كريم موضعي. كل ما تحتاجينه لبشرة صافية ومشرقة.",
+    enSubtitle: "The complete anti-acne routine: Liquid Cleanser + Face Serum + Face Cream + Spot Treatment. Everything you need for clear, glowing skin.",
+    price: 289,
+    priceLabel: "289 DH",
+    tag: "Pack Complet",
+    badge: "Offre Spéciale",
+    image: "/images/pack-complet.jpg",
+    isPack: true,
+    includesProductIds: [1, 2, 3, 4]
   }
 ];
 
