@@ -7,18 +7,27 @@ import {
   Leaf, 
   CreditCard, 
   Lock, 
-  Star,
-  Menu,
-  X,
-  Truck,
-  CheckCircle,
-  User,
-  Phone,
-  MapPin,
-  FileText,
-  Package,
-  ArrowLeft,
-  Settings
+  Star, 
+  Menu, 
+  X, 
+  Truck, 
+  CheckCircle, 
+  User, 
+  Phone, 
+  MapPin, 
+  FileText, 
+  Package, 
+  ArrowLeft, 
+  Settings,
+  Sun,
+  Moon,
+  Clock,
+  Droplets,
+  Heart,
+  HelpCircle,
+  Mail,
+  Send,
+  Check
 } from 'lucide-react';
 import AdminDashboard from './AdminDashboard.jsx';
 
@@ -703,6 +712,491 @@ export default function App() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          SECTION: LA ROUTINE (Guide d'utilisation matin & soir)
+      ========================================================= */}
+      <section id="routine" className="py-20 bg-[#FBF9F5] border-b border-[#E8E1D5] px-6">
+        <div className="max-w-6xl mx-auto">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-bold text-[#A26D62] uppercase tracking-widest inline-block mb-2">
+              {isRTL ? "طريقة الاستعمال الصحيحة" : (lang === 'en' ? "Expert Step-by-Step Guide" : "Protocole d'Application Quotidien")}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2D4030]">
+              {isRTL ? "الروتين الكامل للحصول على نتائج سريعة" : (lang === 'en' ? "The Complete Routine For Fast Results" : "La Routine Idéale pour des Résultats en 14 Jours")}
+            </h2>
+            <div className="w-16 h-0.5 bg-[#A26D62] mx-auto mt-4 mb-4"></div>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {isRTL 
+                ? "اتبعي هذا الروتين البسيط صباحاً ومساءً المخصص لمجموعة LYXENESKIN لتهدئة الالتهابات، تنظيف المسام بعمق، والتخلص النهائي من الحبوب وآثارها."
+                : (lang === 'en' 
+                    ? "Follow this simple morning & evening routine designed specifically for the LYXENESKIN 4-in-1 pack to clear blemishes, calm inflammation and prevent breakouts."
+                    : "Pour maximiser l'efficacité de vos 4 soins LYXENESKIN, suivez ce protocole pensé par nos dermatologues. Respectez l'ordre d'application pour une absorption optimale.")}
+            </p>
+          </div>
+
+          {/* Morning vs Evening Timeline */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            
+            {/* Morning Routine Card */}
+            <div className="bg-white rounded-3xl p-8 border border-[#DFD6C7] shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-full blur-2xl pointer-events-none -mr-10 -mt-10"></div>
+              
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-amber-100/80 text-amber-700 flex items-center justify-center">
+                  <Sun className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider block">
+                    {isRTL ? "خطوات الصباح" : (lang === 'en' ? "Daytime Routine" : "Rituel du Matin")}
+                  </span>
+                  <h3 className="font-serif font-bold text-xl text-[#2D4030]">
+                    {isRTL ? "روتين الصباح — حماية ونقاء طوال اليوم" : (lang === 'en' ? "Morning Protocol — Protect & Purify" : "Matin : Purifier & Protéger")}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                {/* Step 1 */}
+                <div className="flex gap-4 items-start">
+                  <span className="w-7 h-7 rounded-full bg-[#2D4030] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#2D4030]">
+                      {isRTL ? "غسل الوجه بالصابون السائل (Nettoyant Purifiant)" : "Nettoyage doux avec le Savon Liquide (250 ml)"}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      {isRTL ? "اغسلي وجهك بالماء الفاتر مع تدليك لطيف بحركات دائرية لمدة 60 ثانية للتخلص من الزيوت والشوائب المتراكمة أثناء الليل." : "Massez délicatement 1 pression sur peau humide pendant 60 secondes en insistant sur la zone T. Rincez à l'eau tiède."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="flex gap-4 items-start">
+                  <span className="w-7 h-7 rounded-full bg-[#2D4030] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#2D4030]">
+                      {isRTL ? "سيروم الوجه المركز (Sérum Concentré)" : "Application du Sérum Concentré Anti-Acné (50 ml)"}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      {isRTL ? "ضعي من 3 إلى 4 قطرات على الوجه والرقبة، ودلكي بلطف حتى تمتصه البشرة بالكامل لتضييق المسام وتهدئة الاحمرار." : "Déposez 3 à 4 gouttes directement sur le visage. Tapotez légèrement jusqu'à pénétration complète pour resserrer les pores."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="flex gap-4 items-start">
+                  <span className="w-7 h-7 rounded-full bg-[#2D4030] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#2D4030]">
+                      {isRTL ? "الترطيب بكريم الوجه (Crème Légère)" : "Hydratation avec la Crème Visage Anti-Acné (50 ml)"}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      {isRTL ? "ضعي كمية صغيرة لترطيب عميق دون لمعان أو ملمس دهني، مما يحمي الحاجز الطبيعي لبشرتك طوال اليوم." : "Une noisette suffit pour hydrater durablement sans brillance et réguler le sébum tout au long de la journée."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 4 Tip */}
+                <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200/60 text-[11px] text-amber-900 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-amber-700 flex-shrink-0" />
+                  <span>{isRTL ? "نصيحة إضافية: يُستحسن دائماً وضع واقي شمس مناسب بعد الكريم المرطب." : "Astuce du matin : Appliquez toujours un écran solaire non comédogène après votre crème hydratante."}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Evening Routine Card */}
+            <div className="bg-white rounded-3xl p-8 border border-[#DFD6C7] shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-2xl pointer-events-none -mr-10 -mt-10"></div>
+              
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-100/80 text-indigo-700 flex items-center justify-center">
+                  <Moon className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-indigo-700 uppercase tracking-wider block">
+                    {isRTL ? "خطوات المساء" : (lang === 'en' ? "Nighttime Routine" : "Rituel du Soir")}
+                  </span>
+                  <h3 className="font-serif font-bold text-xl text-[#2D4030]">
+                    {isRTL ? "روتين المساء — إصلاح وعلاج الحبوب الموضعي" : (lang === 'en' ? "Evening Protocol — Regenerate & Treat" : "Soir : Régénérer & Traiter Ciblé")}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                {/* Step 1 */}
+                <div className="flex gap-4 items-start">
+                  <span className="w-7 h-7 rounded-full bg-[#A26D62] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#2D4030]">
+                      {isRTL ? "تنظيف المسام بالصابون السائل" : "Double nettoyage doux au Savon Liquide"}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      {isRTL ? "إزالة الأتربة، التلوث وآثار المكياج لتهيئة البشرة لاستقبال العلاج الليلي." : "Élimine la pollution, les impuretés et l'excès de sébum accumulés pendant la journée pour laisser respirer la peau."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="flex gap-4 items-start">
+                  <span className="w-7 h-7 rounded-full bg-[#A26D62] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#2D4030]">
+                      {isRTL ? "سيروم الوجه بحمض الساليسيليك" : "Sérum Concentré pour une régénération nocturne"}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      {isRTL ? "يُسرع تجدد خلايا البشرة وتلاشي التصبغات والآثار الحمراء للبثور أثناء النوم." : "La nuit, le renouvellement cellulaire est à son maximum. Le sérum agit au cœur des pores pour prévenir l'acné."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="flex gap-4 items-start">
+                  <span className="w-7 h-7 rounded-full bg-[#A26D62] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#2D4030]">
+                      {isRTL ? "الترطيب والتهدئة بكريم الوجه" : "Crème Visage Apaisante & Réparatrice"}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      {isRTL ? "تغذية وتهدئة البشرة الملتهبة بالألوفيرا النقية لمنع الجفاف." : "Apaise les sensations d'échauffement et renforce le film hydrolipidique protecteur pendant le sommeil."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 4 SOS */}
+                <div className="flex gap-4 items-start p-3 bg-red-50/70 rounded-xl border border-red-200/60">
+                  <span className="w-7 h-7 rounded-full bg-red-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">SOS</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-red-900">
+                      {isRTL ? "علاج موضعي سريع المفعول (Soin Localisé Tube)" : "Soin Localisé SOS Tube — Directement sur les boutons"}
+                    </h4>
+                    <p className="text-xs text-red-800/80 mt-1 leading-relaxed">
+                      {isRTL ? "ضعي نقطة صغيرة مباشرة فوق البثور النشطة أو تحت الجلد واتركيها طوال الليل لتقليص حجمها وتجفيفها بسرعة خيالية." : "Déposez une pointe directement sur le bouton inflammé sans étaler. Laissez agir toute la nuit pour le résorber."}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* 3 Steps To Quick Results Banner */}
+          <div className="bg-[#2D4030] text-[#F7F4EE] rounded-3xl p-8 md:p-10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 max-w-xl">
+              <span className="text-xs font-bold text-[#A26D62] uppercase tracking-wider block">
+                {isRTL ? "الالتزام هو سر النتيجة" : "Conseil des Experts LYXENESKIN"}
+              </span>
+              <h3 className="font-serif font-bold text-2xl text-white">
+                {isRTL ? "كيفاش تلاحظي الفرق فـ 14 يوم فقط؟" : "Comment voir les premiers résultats en 14 jours ?"}
+              </h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
+                {isRTL 
+                  ? "الاستمرارية مرتين فاليوم (صباحاً ومساءً)، عدم لمس الحبوب باليدين، وشرب 2 لتر من الماء يومياً كيضمن ليك تصفية كاملة للبشرة."
+                  : "Une application régulière matin et soir sans sauter d'étape, combinée à une bonne hydratation, permet d'éliminer 94% des imperfections dès 2 semaines."}
+              </p>
+            </div>
+            <button 
+              onClick={orderPack}
+              className="bg-[#F7F4EE] hover:bg-white text-[#2D4030] px-6 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition shadow-lg flex-shrink-0 flex items-center gap-2 cursor-pointer"
+            >
+              <Package className="w-4 h-4" />
+              {isRTL ? "اطلبي المجموعة كاملة — 289 درهم" : "Commander la Routine — 289 DH"}
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================
+          SECTION: CONSEILS (10 Conseils Essentiels Skincare)
+      ========================================================= */}
+      <section id="blog" className="py-20 bg-[#F4EFE6] border-b border-[#E8E1D5] px-6">
+        <div className="max-w-6xl mx-auto">
+          
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-bold text-[#A26D62] uppercase tracking-widest inline-block mb-2">
+              {isRTL ? "دليل العناية اليومية" : (lang === 'en' ? "Skincare Guide & Tips" : "Guide Skincare & Conseils")}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2D4030]">
+              {isRTL ? "10 نصائح ذهبية للعناية بالبشرة والتخلص من الحبوب" : (lang === 'en' ? "10 Golden Rules for Clear & Healthy Skin" : "Les 10 Conseils d'Or pour une Peau Zéro Défaut")}
+            </h2>
+            <div className="w-16 h-0.5 bg-[#A26D62] mx-auto mt-4 mb-4"></div>
+            <p className="text-sm text-gray-600">
+              {isRTL 
+                ? "عادات يومية بسيطة معتمدة من أطباء الجلد لتسريع علاج حب الشباب والحفاظ على نضارة وإشراقة بشرتك."
+                : (lang === 'en' 
+                    ? "Essential daily habits approved by dermatologists to treat breakouts, clear acne marks and maintain healthy glowing skin."
+                    : "Les réflexes indispensables validés par les dermatologues pour dire adieu aux boutons, réguler le sébum et retrouver confiance.")}
+            </p>
+          </div>
+
+          {/* 10 Tips Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            
+            {/* Tip 1 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                01
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "ماتقيصيش الحبوب بيديك نهائياً" : "Ne touchez jamais à vos boutons"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "عصر الحبوب كينقل البكتيريا للأماكن السليمة، كيزيد من الالتهاب وكيخلي علامات وبقع داكنة صعيبة فالإزالة. استعملي Soin Localisé Tube فبلاصتها."
+                  : "Percer un bouton propage les bactéries sous la peau, augmente l'inflammation et garantit des cicatrices pigmentaires durables. Utilisez le soin SOS ciblé."}
+              </p>
+            </div>
+
+            {/* Tip 2 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                02
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "بدلي غشاء الوسادة (Taie d'oreiller) بانتظام" : "Changez votre taie d'oreiller tous les 3 jours"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "الوسادة كتجمع العرق، الزيوت وخلايا الجلد الميتة كل ليلة. بدلي الغشاء مرتين فالسيمانة على الأقل، ويفضل وسادة من الحرير أو القطن النقي."
+                  : "Le tissu absorbe le sébum, les résidus capillaires et les bactéries chaque nuit. Utilisez une taie en soie ou en coton lavée très régulièrement."}
+              </p>
+            </div>
+
+            {/* Tip 3 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                03
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "ماتستغنايش على الترطيب وخا تكون بشرتك دهنية" : "N'ayez pas peur d'hydrater une peau grasse"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "إذا حرمتي البشرة الدهنية من الترطيب، كتدير رد فعل وكتفرز دهون كتر باش تحمي راسها. استعملي Crème Visage LYXENESKIN ذات التركيبة الخفيفة."
+                  : "Déshydratée, une peau acnéique surproduit du sébum pour se protéger. Une crème légère à l'Aloe Vera équilibre et apaise immédiatement."}
+              </p>
+            </div>
+
+            {/* Tip 4 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                04
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "مسحي شاشة الهاتف ديالك يومياً" : "Désinfectez l'écran de votre téléphone"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "شاشة الهاتف كتجمع بكتيريا كتر من مقعد المرحاض! فاش كتحطيها على وجهك فالمكالمات كتسبب حبوب على الخدين والفك."
+                  : "Véritable nid à bactéries, coller son smartphone contre sa joue lors d'appels provoque souvent des poussées d'acné sur les mâchoires."}
+              </p>
+            </div>
+
+            {/* Tip 5 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                05
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "غسلي وجهك بالماء الفاتر ماشي الساخن" : "Lavez votre visage à l'eau tiède, jamais chaude"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "الماء الساخن كيدمر الحاجز الواقي للبشرة وكيسبب الجفاف وتهيج الحبوب. الماء الفاتر هو الأفضل لفتح المسام بلطف."
+                  : "L'eau trop chaude agresse le film hydrolipidique naturel et stimule les glandes sébacées. L'eau tiède est idéale pour purifier en douceur."}
+              </p>
+            </div>
+
+            {/* Tip 6 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                06
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "شربي ما لا يقل عن 1.5 إلى 2 لتر من الماء" : "Buvez 1,5L à 2L d'eau par jour"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "الترطيب الداخلي كيساعد الجسم يتخلص من السموم، كيحسن مرونة البشرة وكيخلي إشراقتها طبيعية بدون شوائب."
+                  : "L'hydratation commence de l'intérieur. Boire suffisamment aide les reins à filtrer les toxines et favorise la cicatrisation cutanée."}
+              </p>
+            </div>
+
+            {/* Tip 7 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                07
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "استعملي فوطة خاصة بالوجه بوحدو" : "Utilisez une serviette dédiée uniquement au visage"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "ماتستعمليش نفس الفوطة ديال الجسم أو اليدين. خصصي فوطة صغيرة ناعمة ونشفي وجهك بالطبطبة الخفيفة ماشي الحك."
+                  : "Ne séchez jamais votre visage avec la serviette de bain ou des mains. Tapotez avec une petite serviette propre sans frotter."}
+              </p>
+            </div>
+
+            {/* Tip 8 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                08
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "نقصي من السكر والمقليات فالتغذية ديالك" : "Réduisez le sucre raffiné et les produits laitiers"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "الأطعمة الغنية بالسكر كترفع الأنسولين وكتنشط الهرمونات المسببة للإفرازات الدهنية وظهور الحبوب المفاجئة."
+                  : "Les pics d'insuline provoqués par les sodas, pâtisseries et excès de laitages augmentent l'inflammation cutanée et l'acné kystique."}
+              </p>
+            </div>
+
+            {/* Tip 9 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
+                09
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "نعسي من 7 لـ 8 سوايع كل ليلة" : "Offrez-vous un sommeil réparateur (7h à 8h)"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "أثناء النوم، الجسم كيفرز الكولاجين وكيصلح الخلايا المتضررة. قلة النعاس كترفع الكورتيزول وكتهيج الحبوب."
+                  : "C'est entre 23h et 4h du matin que la peau se répare et synthétise le collagène. Le manque de sommeil accélère le vieillissement et l'acné."}
+              </p>
+            </div>
+
+            {/* Tip 10 */}
+            <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3 sm:col-span-2 lg:col-span-1">
+              <div className="w-10 h-10 rounded-xl bg-[#A26D62] text-white flex items-center justify-center font-bold text-sm font-mono">
+                10
+              </div>
+              <h3 className="font-bold text-sm text-[#2D4030]">
+                {isRTL ? "الاستمرارية والصبر هما المفتاح" : "La régularité : laissez le temps aux actifs d'agir"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                {isRTL 
+                  ? "دورة تجدد البشرة كتاخد من 21 حتى 28 يوم. متقطعيش الروتين حتى تكملي المجموعة وغادي تشوفي الفرق المبهر بنفسك."
+                  : "Le cycle de renouvellement cellulaire dure 28 jours. La patience et la fidélité à la routine 4-en-1 sont le secret d'une peau définitivement nette."}
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================
+          SECTION: CONTACT & SUPPORT
+      ========================================================= */}
+      <section id="contact" className="py-20 bg-[#FBF9F5] px-6">
+        <div className="max-w-6xl mx-auto">
+          
+          <div className="text-center max-w-xl mx-auto mb-14">
+            <span className="text-xs font-bold text-[#A26D62] uppercase tracking-widest inline-block mb-2">
+              {isRTL ? "خدمة الزبناء" : (lang === 'en' ? "Customer Care" : "Support & Assistance")}
+            </span>
+            <h2 className="text-3xl font-serif font-bold text-[#2D4030]">
+              {isRTL ? "تواصلوا معنا — نحن هنا لمساعدتكم" : (lang === 'en' ? "Get in Touch With Our Skincare Team" : "Une Question ? Contactez Notre Équipe")}
+            </h2>
+            <div className="w-12 h-0.5 bg-[#A26D62] mx-auto mt-3 mb-3"></div>
+            <p className="text-xs text-gray-600">
+              {isRTL 
+                ? "فريق LYXENESKIN في خدمتكم للإجابة على جميع استفساراتكم حول المنتجات وطرق الاستعمال ومتابعة الطلبيات."
+                : (lang === 'en' 
+                    ? "Our skincare advisors are available 7 days a week to help with your routine, order tracking, and delivery questions."
+                    : "Notre équipe beauté vous répond 7j/7 pour vous conseiller sur votre routine ou suivre votre livraison COD.")}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            
+            {/* WhatsApp Direct */}
+            <a 
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxeneskin`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-green-50 text-[#25D366] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <MessageCircle className="w-7 h-7 fill-current" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
+                {isRTL ? "واتساب مباشر" : "WhatsApp Direct"}
+              </h3>
+              <p className="text-xs text-gray-500 mb-3">
+                {isRTL ? "إجابة فورية من خبيرات العناية" : "Réponse rapide en moins de 15 minutes"}
+              </p>
+              <span className="text-xs font-bold text-[#25D366] underline">
+                {isRTL ? "بدء المحادثة الآن ←" : "Discuter sur WhatsApp →"}
+              </span>
+            </a>
+
+            {/* Phone support */}
+            <div className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm text-center flex flex-col items-center">
+              <div className="w-14 h-14 rounded-2xl bg-[#EFEAE1] text-[#2D4030] flex items-center justify-center mb-4">
+                <Phone className="w-7 h-7" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
+                {isRTL ? "الاتصال الهاتفي" : "Support Téléphonique"}
+              </h3>
+              <p className="text-xs text-gray-500 mb-3">
+                {isRTL ? "من الإثنين إلى السبت (9h - 19h)" : "Du Lundi au Samedi, 9h à 19h"}
+              </p>
+              <span className="text-xs font-bold text-[#2D4030] font-mono">
+                +212 6 00 00 00 00
+              </span>
+            </div>
+
+            {/* Delivery Guarantee */}
+            <div className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm text-center flex flex-col items-center">
+              <div className="w-14 h-14 rounded-2xl bg-[#EFE4DE] text-[#A26D62] flex items-center justify-center mb-4">
+                <Truck className="w-7 h-7" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
+                {isRTL ? "التوصيل والدفع عند الاستلام" : "Livraison & Suivi COD"}
+              </h3>
+              <p className="text-xs text-gray-500 mb-3">
+                {isRTL ? "توصيل خلال 24h إلى 48h بجميع مدن المغرب" : "Partout au Maroc en 24h à 48h"}
+              </p>
+              <span className="text-xs font-bold text-[#A26D62]">
+                {isRTL ? "الدفع بعد المعاينة" : "Paiement à la réception"}
+              </span>
+            </div>
+
+          </div>
+
+          {/* Quick FAQ accordion-like help box */}
+          <div className="mt-12 max-w-3xl mx-auto bg-white rounded-3xl p-8 border border-[#DFD6C7] shadow-sm">
+            <h4 className="font-serif font-bold text-lg text-[#2D4030] mb-4 text-center">
+              {isRTL ? "الأسئلة الأكثر تداولاً" : "Questions Fréquentes"}
+            </h4>
+            <div className="grid sm:grid-cols-2 gap-4 text-xs">
+              <div className="p-4 bg-[#FBF9F5] rounded-2xl border border-[#EFEAE1]">
+                <p className="font-bold text-[#2D4030] mb-1">
+                  {isRTL ? "واش المنتجات مناسبة للبشرة الحساسة؟" : "Est-ce adapté aux peaux très sensibles ?"}
+                </p>
+                <p className="text-gray-500 leading-relaxed">
+                  {isRTL ? "نعم، التركيبة طبيعية بدون بارابين أو كحول قاسي، وغنية بالألوفيرا المهدئة." : "Oui, formulé sans parabènes ni sulfates agressifs, enrichi en Aloe Vera pour apaiser."}
+                </p>
+              </div>
+              <div className="p-4 bg-[#FBF9F5] rounded-2xl border border-[#EFEAE1]">
+                <p className="font-bold text-[#2D4030] mb-1">
+                  {isRTL ? "وقتاش كتبان النتيجة الأولى؟" : "Quand voit-on les premiers résultats ?"}
+                </p>
+                <p className="text-gray-500 leading-relaxed">
+                  {isRTL ? "الاحمرار كينقص من اليومين الأولين، والبثور كتبدا تختفي فـ 10 إلى 14 يوم." : "Apaisement immédiat dès 48h. Diminution nette des boutons dès 10 à 14 jours."}
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
