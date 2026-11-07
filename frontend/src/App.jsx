@@ -42,7 +42,7 @@ const translations = {
     heroSubtitle: "Formulée à base d'Aloe Vera pur et d'Acide Salicylique pour purifier, apaiser et transformer votre grain de peau durablement.",
     shopNow: "Commander Maintenant",
     discoverProducts: "Découvrir la Gamme",
-    bundleOffer: "Pack Complet 4-en-1 (Best-Seller)",
+    bundleOffer: "Pack Complet 3-en-1 (Best-Seller)",
     saveBadge: "Économisez 55%",
     pricePack: "289 DH",
     oldPricePack: "489 DH",
@@ -53,7 +53,7 @@ const translations = {
     feat2Desc: "Hydrate intensément et calme instantanément les rougeurs et inflammations.",
     feat3Title: "Résultats Visibles dès 14 Jours",
     feat3Desc: "94% de nos utilisatrices constatent une réduction nette des boutons et points noirs.",
-    catalogTitle: "Nos 4 Essentiels Anti-Imperfections",
+    catalogTitle: "Nos 3 Essentiels Éclat & Anti-Imperfections",
     addToCart: "Ajouter au Panier",
     buyNow: "Commander",
     blogTitle: "Conseils & Rituels Skincare",
@@ -92,7 +92,7 @@ const translations = {
     heroSubtitle: "تركيبة فريدة بخلاصة الألوفيرا النقية وحمض الساليسيليك لتنقية البشرة، تهدئة الاحمرار واستعادة نضارتها.",
     shopNow: "اطلبي الآن",
     discoverProducts: "اكتشفي المنتجات",
-    bundleOffer: "المجموعة الكاملة 4 في 1 (الأكثر مبيعاً)",
+    bundleOffer: "المجموعة الكاملة 3 في 1 (الأكثر مبيعاً)",
     saveBadge: "خصم 55%",
     pricePack: "289 درهم",
     oldPricePack: "489 درهم",
@@ -103,7 +103,7 @@ const translations = {
     feat2Desc: "ترطيب فائق وتهدئة فورية للاحمرار والالتهابات الناتجة عن البثور.",
     feat3Title: "نتائج مثبتة في 14 يوماً",
     feat3Desc: "94% من الفتيات لاحظوا اختفاء الحبوب وتوحيد لون البشرة.",
-    catalogTitle: "منتجاتنا الأربعة المتخصصة",
+    catalogTitle: "منتجاتنا الثلاثة المتخصصة",
     addToCart: "أضف إلى السلة",
     buyNow: "اطلب الآن",
     blogTitle: "نصائح وروتين العناية بالبشرة",
@@ -142,7 +142,7 @@ const translations = {
     heroSubtitle: "Powered by pure Aloe Vera and Salicylic Acid to purify, soothe, and visibly clear acne-prone skin.",
     shopNow: "Order Now",
     discoverProducts: "Explore Products",
-    bundleOffer: "Complete 4-Piece Routine (Best Seller)",
+    bundleOffer: "Complete 3-Piece Routine (Best Seller)",
     saveBadge: "Save 55%",
     pricePack: "289 DH",
     oldPricePack: "489 DH",
@@ -153,7 +153,7 @@ const translations = {
     feat2Desc: "Delivers lightweight hydration while immediately calming redness and irritation.",
     feat3Title: "Visible Results in 14 Days",
     feat3Desc: "94% of users report clearer skin, fewer breakouts, and balanced oil production.",
-    catalogTitle: "The 4 Skincare Essentials",
+    catalogTitle: "The 3 Skincare Essentials",
     addToCart: "Add to Cart",
     buyNow: "Order Now",
     blogTitle: "Skincare Journal & Tips",
@@ -190,70 +190,56 @@ const translations = {
 const INITIAL_PRODUCTS = [
   {
     id: 1,
-    name: "Savon Liquide Anti-Acné (250 ml)",
-    arName: "الصابون السائل المنظف والمطهر (250 مل)",
-    enName: "Anti-Acne Liquid Cleanser (250 ml)",
-    subtitle: "Nettoie en profondeur, élimine l'excès de sébum et prévient l'apparition de nouvelles imperfections. Enrichi en Aloe Vera & Acide Salicylique.",
-    arSubtitle: "تنظيف عميق للمسام، إزالة الزيوت الزائدة ومنع ظهور الحبوب. بخلاصة الألوفيرا وحمض الساليسيليك.",
-    enSubtitle: "Deep-cleanses pores, removes excess sebum and prevents new breakouts. Enriched with Aloe Vera & Salicylic Acid.",
+    name: "Gel Nettoyant Lyxene Pro (200 ml)",
+    arName: "جل منظف للبشرة بالأرز والنياسيناميد (200 مل)",
+    enName: "Lyxene Pro Cleansing Gel (200 ml)",
+    subtitle: "Au riz, à la niacinamide et à l'acide salicylique. Nettoie en profondeur, élimine l'excès de sébum et affine le grain de peau.",
+    arSubtitle: "بخلاصة الأرز، النياسيناميد وحمض الساليسيليك. تنظيف عميق للمسام، إزالة الزيوت الزائدة وتفتيح البشرة.",
+    enSubtitle: "With rice extract, niacinamide and salicylic acid. Deep-cleanses pores, controls sebum and smooths skin texture.",
     price: 149,
     priceLabel: "149 DH",
     tag: "Étape 1 : Nettoyage",
     badge: "Indispensable",
-    image: "/images/savon-liquide.jpg"
+    image: "/images/gel-nettoyant.jpg"
   },
   {
     id: 2,
-    name: "Sérum Visage Concentré Anti-Acné (50 ml)",
-    arName: "سيروم الوجه المركز المضاد للحبوب (50 ml)",
-    enName: "Concentrated Anti-Acne Face Serum (50 ml)",
-    subtitle: "Formule concentrée à l'Acide Salicylique qui pénètre en profondeur pour resserrer les pores, réduire les rougeurs et accélérer la cicatrisation.",
-    arSubtitle: "تركيبة مركزة بحمض الساليسيليك تتغلغل بعمق لتضييق المسام وتقليل الاحمرار وتسريع التئام البشرة.",
-    enSubtitle: "Concentrated Salicylic Acid formula that penetrates deep to tighten pores, reduce redness and accelerate skin healing.",
+    name: "Sérum Éclaircissant Anti-Taches (50 ml)",
+    arName: "سيروم مفتح للبشرة بالنياسيناميد والألفا أربوتين (50 مل)",
+    enName: "Brightening Face Serum (50 ml)",
+    subtitle: "À la niacinamide et à l'alpha arbutine. Unifie le teint, estompe les taches d'acné et resserre visiblement les pores.",
+    arSubtitle: "بتركيبة النياسيناميد والألفا أربوتين لتفتيح التصبغات، إزالة آثار الحبوب وتوحيد لون البشرة.",
+    enSubtitle: "Formulated with niacinamide and alpha arbutin. Fades dark spots, corrects acne marks and refines pores.",
     price: 189,
     priceLabel: "189 DH",
-    tag: "Étape 2 : Traitement Ciblé",
+    tag: "Étape 2 : Éclat & Anti-Taches",
     badge: "Best Seller",
-    image: "/images/serum-visage.jpg"
+    image: "/images/serum-eclaircissant.jpg"
   },
   {
     id: 3,
-    name: "Crème Visage Anti-Acné (50 ml)",
-    arName: "كريم الوجه المهدئ والمرطب (50 ml)",
-    enName: "Anti-Acne Face Cream (50 ml)",
-    subtitle: "Hydrate sans effet gras, apaise les irritations et rééquilibre la production de sébum. Texture légère qui fond instantanément dans la peau.",
-    arSubtitle: "ترطيب بدون لمعان، تهدئة الالتهابات وإعادة توازن إفراز الدهون. ملمس خفيف يمتص فوراً.",
-    enSubtitle: "Oil-free moisture, soothes irritation and rebalances sebum production. Lightweight texture that melts instantly into skin.",
+    name: "Crème Éclaircissante & Hydratante Lyxene Pro (50 ml)",
+    arName: "كريم مبيض ومرطب بالكولاجين وحمض الهيالورونيك (50 مل)",
+    enName: "Brightening & Moisturizing Cream (50 ml)",
+    subtitle: "Au collagène et à l'acide hyaluronique. Hydrate intensément, illumine le teint et raffermit la peau sans effet gras.",
+    arSubtitle: "بالكولاجين وحمض الهيالورونيك. ترطيب عميق، تفتيح نضارة البشرة وتغذيتها دون لمعان دهني.",
+    enSubtitle: "Enriched with collagen and hyaluronic acid. Deep hydration, boosts radiance and firms the skin barrier.",
     price: 169,
     priceLabel: "169 DH",
-    tag: "Étape 3 : Hydratation",
-    badge: "Texture Légère",
-    image: "/images/creme-visage.jpg"
-  },
-  {
-    id: 4,
-    name: "Soin Localisé Anti-Boutons",
-    arName: "كريم موضعي سريع المفعول لعلاج البثور",
-    enName: "Targeted Spot Treatment Cream",
-    subtitle: "Soin SOS express : appliquez directement sur le bouton pour le réduire en quelques heures. Action ciblée anti-inflammatoire et antibactérienne.",
-    arSubtitle: "علاج طوارئ سريع: ضعيه مباشرة على الحبة لتقليصها في ساعات. مضاد للالتهاب والبكتيريا.",
-    enSubtitle: "SOS express care: apply directly on the spot to reduce it in hours. Targeted anti-inflammatory and antibacterial action.",
-    price: 129,
-    priceLabel: "129 DH",
-    tag: "Étape 4 : Urgence Boutons",
-    badge: "Action Rapide",
-    image: "/images/creme-tube.jpg"
+    tag: "Étape 3 : Hydratation & Éclat",
+    badge: "Formule Riche",
+    image: "/images/creme-eclaircissante.jpg"
   }
 ];
 
 const PACK_PRODUCT = {
   id: 99,
-  name: "Pack Complet Anti-Acné 4-en-1",
-  arName: "المجموعة الكاملة لعلاج حب الشباب 4 في 1",
-  enName: "Complete Anti-Acne 4-in-1 Pack",
-  subtitle: "La routine complète anti-acné : Savon Liquide + Sérum Visage + Crème Visage + Soin Localisé. Tout ce qu'il faut pour une peau nette et éclatante.",
-  arSubtitle: "الروتين الكامل لعلاج حب الشباب: صابون سائل + سيروم + كريم وجه + كريم موضعي. كل ما تحتاجينه لبشرة صافية ومشرقة.",
-  enSubtitle: "The complete anti-acne routine: Liquid Cleanser + Face Serum + Face Cream + Spot Treatment. Everything you need for clear, glowing skin.",
+  name: "Pack Complet Éclat & Anti-Imperfections 3-en-1",
+  arName: "المجموعة الكاملة للنضارة وتصفية البشرة 3 في 1",
+  enName: "Complete Radiance & Anti-Acne 3-in-1 Pack",
+  subtitle: "La routine complète : Gel Nettoyant (200ml) + Sérum Éclaircissant (50ml) + Crème Éclaircissante (50ml). Tout ce qu'il faut pour un teint unifié, net et éclatant.",
+  arSubtitle: "الروتين الكامل: جل منظف (200 مل) + سيروم مفتح (50 مل) + كريم مبيض ومرطب (50 مل). كل ما تحتاجينه لبشرة صافية ومشرقة.",
+  enSubtitle: "The complete routine: Cleansing Gel (200ml) + Brightening Serum (50ml) + Radiant Cream (50ml). Everything you need for clear, glowing skin.",
   price: 289,
   priceLabel: "289 DH",
   tag: "Pack Complet",
@@ -611,7 +597,7 @@ export default function App() {
             />
             <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
               <span className="bg-[#2D4030]/90 backdrop-blur-sm text-white text-[11px] px-3 py-1 rounded-full font-semibold shadow">
-                {isRTL ? "المجموعة المتكاملة" : "Gamme Complète 4-en-1"}
+                {isRTL ? "المجموعة المتكاملة" : "Gamme Complète 3-en-1"}
               </span>
               <div className="flex text-amber-400 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full shadow">
                 {[...Array(5)].map((_, i) => (
@@ -642,9 +628,9 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.filter(p => !p.isPack).map((p) => (
-              <div key={p.id} className="bg-[#FBF9F5] rounded-2xl p-5 border border-[#E5DEC8] flex flex-col hover:shadow-xl transition-all duration-300 group">
+              <div key={p.id} className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] flex flex-col hover:shadow-xl transition-all duration-300 group">
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-[10px] font-bold text-[#A26D62] uppercase tracking-wider">{p.tag}</span>
@@ -652,11 +638,11 @@ export default function App() {
                   </div>
 
                   {/* Real Product Image */}
-                  <div className="overflow-hidden rounded-xl mb-4 bg-white border border-[#EFEAE1] aspect-square flex items-center justify-center">
+                  <div className="overflow-hidden rounded-xl mb-4 bg-white border border-[#EFEAE1] aspect-square flex items-center justify-center p-3">
                     <img
                       src={p.image}
                       alt={isRTL ? p.arName : (lang === 'en' ? p.enName : p.name)}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
 
@@ -691,10 +677,10 @@ export default function App() {
                   {isRTL ? "عرض خاص" : (lang === 'en' ? "Special Offer" : "Offre Spéciale")}
                 </span>
                 <h3 className="font-serif font-bold text-xl text-[#2D4030] mb-1">
-                  {isRTL ? "المجموعة الكاملة 4 في 1" : (lang === 'en' ? "Complete 4-in-1 Pack" : "Pack Complet 4-en-1")}
+                  {isRTL ? "المجموعة الكاملة 3 في 1" : (lang === 'en' ? "Complete 3-in-1 Pack" : "Pack Complet 3-en-1")}
                 </h3>
                 <p className="text-xs text-gray-500 mb-3">
-                  {isRTL ? "جميع المنتجات الأربعة في عرض واحد" : (lang === 'en' ? "All 4 products in one special bundle" : "Les 4 produits réunis dans une offre unique")}
+                  {isRTL ? "جميع المنتجات الثلاثة في عرض واحد" : (lang === 'en' ? "All 3 products in one special bundle" : "Les 3 produits réunis dans une offre unique")}
                 </p>
                 <div className="flex items-baseline gap-2 justify-center md:justify-start mb-4">
                   <span className="text-2xl font-bold text-[#2D4030]">{t.pricePack}</span>
@@ -732,10 +718,10 @@ export default function App() {
             <div className="w-16 h-0.5 bg-[#A26D62] mx-auto mt-4 mb-4"></div>
             <p className="text-sm text-gray-600 leading-relaxed">
               {isRTL
-                ? "اتبعي هذا الروتين البسيط صباحاً ومساءً المخصص لمجموعة LYXENESKIN لتهدئة الالتهابات، تنظيف المسام بعمق، والتخلص النهائي من الحبوب وآثارها."
+                ? "اتبعي هذا الروتين البسيط صباحاً ومساءً المخصص لمجموعة LYXENESKIN (الجل المنظف + السيروم المفتح + كريم الكولاجين) لتنظيف المسام، توحيد لون البشرة، والتخلص النهائي من البقع والتصبغات."
                 : (lang === 'en'
-                  ? "Follow this simple morning & evening routine designed specifically for the LYXENESKIN 4-in-1 pack to clear blemishes, calm inflammation and prevent breakouts."
-                  : "Pour maximiser l'efficacité de vos 4 soins LYXENESKIN, suivez ce protocole pensé par nos dermatologues. Respectez l'ordre d'application pour une absorption optimale.")}
+                  ? "Follow this simple morning & evening routine designed specifically for the LYXENESKIN 3-in-1 pack to brighten your skin, clear acne marks and achieve a glowing complexion."
+                  : "Pour maximiser l'efficacité de vos 3 soins LYXENESKIN (Gel Nettoyant, Sérum Éclaircissant, Crème Hydratante), suivez ce protocole pensé par nos dermatologues. Respectez l'ordre d'application pour une absorption optimale.")}
             </p>
           </div>
 
@@ -766,10 +752,10 @@ export default function App() {
                   <span className="w-7 h-7 rounded-full bg-[#2D4030] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
                   <div>
                     <h4 className="font-bold text-sm text-[#2D4030]">
-                      {isRTL ? "غسل الوجه بالصابون السائل (Nettoyant Purifiant)" : "Nettoyage doux avec le Savon Liquide (250 ml)"}
+                      {isRTL ? "الجل المنظف بالأرز والنياسيناميد (200 ml)" : "Nettoyage purifiant avec le Gel Nettoyant (200 ml)"}
                     </h4>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {isRTL ? "اغسلي وجهك بالماء الفاتر مع تدليك لطيف بحركات دائرية لمدة 60 ثانية للتخلص من الزيوت والشوائب المتراكمة أثناء الليل." : "Massez délicatement 1 pression sur peau humide pendant 60 secondes en insistant sur la zone T. Rincez à l'eau tiède."}
+                      {isRTL ? "اغسلي وجهك بالماء الفاتر مع تدليك لطيف بحركات دائرية لمدة 60 ثانية لتنقية المسام والتخلص من الزيوت الزائدة." : "Massez délicatement 1 pression sur peau humide pendant 60 secondes. L'alliance riz et niacinamide purifie le teint."}
                     </p>
                   </div>
                 </div>
@@ -779,10 +765,10 @@ export default function App() {
                   <span className="w-7 h-7 rounded-full bg-[#2D4030] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
                   <div>
                     <h4 className="font-bold text-sm text-[#2D4030]">
-                      {isRTL ? "سيروم الوجه المركز (Sérum Concentré)" : "Application du Sérum Concentré Anti-Acné (50 ml)"}
+                      {isRTL ? "سيروم التفتيح بالنياسيناميد والأربوتين (50 ml)" : "Application du Sérum Éclaircissant Anti-Taches (50 ml)"}
                     </h4>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {isRTL ? "ضعي من 3 إلى 4 قطرات على الوجه والرقبة، ودلكي بلطف حتى تمتصه البشرة بالكامل لتضييق المسام وتهدئة الاحمرار." : "Déposez 3 à 4 gouttes directement sur le visage. Tapotez légèrement jusqu'à pénétration complète pour resserrer les pores."}
+                      {isRTL ? "ضعي من 3 إلى 4 قطرات على الوجه والرقبة لتفتيح البقع الداكنة وتوحيد لون البشرة." : "Déposez 3 à 4 gouttes directement sur le visage. L'alpha arbutine estompe les taches d'acné et illumine le teint."}
                     </p>
                   </div>
                 </div>
@@ -792,10 +778,10 @@ export default function App() {
                   <span className="w-7 h-7 rounded-full bg-[#2D4030] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
                   <div>
                     <h4 className="font-bold text-sm text-[#2D4030]">
-                      {isRTL ? "الترطيب بكريم الوجه (Crème Légère)" : "Hydratation avec la Crème Visage Anti-Acné (50 ml)"}
+                      {isRTL ? "كريم الكولاجين وحمض الهيالورونيك (50 ml)" : "Hydratation avec la Crème Éclaircissante au Collagène (50 ml)"}
                     </h4>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {isRTL ? "ضعي كمية صغيرة لترطيب عميق دون لمعان أو ملمس دهني، مما يحمي الحاجز الطبيعي لبشرتك طوال اليوم." : "Une noisette suffit pour hydrater durablement sans brillance et réguler le sébum tout au long de la journée."}
+                      {isRTL ? "ترطيب عميق يحافظ على نضارة ومرونة البشرة طوال اليوم بدون أي لمعان دهني." : "Hydrate en profondeur grâce au collagène et à l'acide hyaluronique pour un fini repulpé et lumineux."}
                     </p>
                   </div>
                 </div>
@@ -821,7 +807,7 @@ export default function App() {
                     {isRTL ? "خطوات المساء" : (lang === 'en' ? "Nighttime Routine" : "Rituel du Soir")}
                   </span>
                   <h3 className="font-serif font-bold text-xl text-[#2D4030]">
-                    {isRTL ? "روتين المساء — إصلاح وعلاج الحبوب الموضعي" : (lang === 'en' ? "Evening Protocol — Regenerate & Treat" : "Soir : Régénérer & Traiter Ciblé")}
+                    {isRTL ? "روتين المساء — تجديد وتغذية ليلية مكثفة" : (lang === 'en' ? "Evening Protocol — Regenerate & Restore" : "Soir : Régénérer & Réparer")}
                   </h3>
                 </div>
               </div>
@@ -832,10 +818,10 @@ export default function App() {
                   <span className="w-7 h-7 rounded-full bg-[#A26D62] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
                   <div>
                     <h4 className="font-bold text-sm text-[#2D4030]">
-                      {isRTL ? "تنظيف المسام بالصابون السائل" : "Double nettoyage doux au Savon Liquide"}
+                      {isRTL ? "تنظيف عميق بالجل المنظف" : "Nettoyage détox au Gel Nettoyant"}
                     </h4>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {isRTL ? "إزالة الأتربة، التلوث وآثار المكياج لتهيئة البشرة لاستقبال العلاج الليلي." : "Élimine la pollution, les impuretés et l'excès de sébum accumulés pendant la journée pour laisser respirer la peau."}
+                      {isRTL ? "إزالة آثار التلوث، الشوائب والدهون المتراكمة خلال اليوم لتتنفس البشرة بحرية." : "Élimine la pollution, les impuretés et l'excès de sébum accumulés pour laisser respirer la peau."}
                     </p>
                   </div>
                 </div>
@@ -845,10 +831,10 @@ export default function App() {
                   <span className="w-7 h-7 rounded-full bg-[#A26D62] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
                   <div>
                     <h4 className="font-bold text-sm text-[#2D4030]">
-                      {isRTL ? "سيروم الوجه بحمض الساليسيليك" : "Sérum Concentré pour une régénération nocturne"}
+                      {isRTL ? "سيروم النياسيناميد للتجديد الليلي" : "Sérum Éclaircissant régénérant"}
                     </h4>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {isRTL ? "يُسرع تجدد خلايا البشرة وتلاشي التصبغات والآثار الحمراء للبثور أثناء النوم." : "La nuit, le renouvellement cellulaire est à son maximum. Le sérum agit au cœur des pores pour prévenir l'acné."}
+                      {isRTL ? "فترة النوم هي الأفضل لامتصاص الألفا أربوتين وتسريع تفتيح آثار الحبوب والتصبغات." : "La nuit, le renouvellement cellulaire s'accélère. Les actifs pénètrent en profondeur pour estomper les taches."}
                     </p>
                   </div>
                 </div>
@@ -858,23 +844,10 @@ export default function App() {
                   <span className="w-7 h-7 rounded-full bg-[#A26D62] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
                   <div>
                     <h4 className="font-bold text-sm text-[#2D4030]">
-                      {isRTL ? "الترطيب والتهدئة بكريم الوجه" : "Crème Visage Apaisante & Réparatrice"}
+                      {isRTL ? "كريم الكولاجين للترميم الليلي" : "Crème au Collagène Réparatrice"}
                     </h4>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {isRTL ? "تغذية وتهدئة البشرة الملتهبة بالألوفيرا النقية لمنع الجفاف." : "Apaise les sensations d'échauffement et renforce le film hydrolipidique protecteur pendant le sommeil."}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step 4 SOS */}
-                <div className="flex gap-4 items-start p-3 bg-red-50/70 rounded-xl border border-red-200/60">
-                  <span className="w-7 h-7 rounded-full bg-red-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">SOS</span>
-                  <div>
-                    <h4 className="font-bold text-sm text-red-900">
-                      {isRTL ? "علاج موضعي سريع المفعول (Soin Localisé Tube)" : "Soin Localisé SOS Tube — Directement sur les boutons"}
-                    </h4>
-                    <p className="text-xs text-red-800/80 mt-1 leading-relaxed">
-                      {isRTL ? "ضعي نقطة صغيرة مباشرة فوق البثور النشطة أو تحت الجلد واتركيها طوال الليل لتقليص حجمها وتجفيفها بسرعة خيالية." : "Déposez une pointe directement sur le bouton inflammé sans étaler. Laissez agir toute la nuit pour le résorber."}
+                      {isRTL ? "تغذية مكثفة وترميم حاجز البشرة الواقي لتستيقظي ببشرة رطبة، ناعمة ومشرقة." : "Nourrit intensément et renforce le film protecteur pour un réveil avec une peau souple et radieuse."}
                     </p>
                   </div>
                 </div>
@@ -947,8 +920,8 @@ export default function App() {
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
                 {isRTL
-                  ? "عصر الحبوب كينقل البكتيريا للأماكن السليمة، كيزيد من الالتهاب وكيخلي علامات وبقع داكنة صعيبة فالإزالة. استعملي Soin Localisé Tube فبلاصتها."
-                  : "Percer un bouton propage les bactéries sous la peau, augmente l'inflammation et garantit des cicatrices pigmentaires durables. Utilisez le soin SOS ciblé."}
+                  ? "عصر الحبوب كينقل البكتيريا للأماكن السليمة، كيزيد من الالتهاب وكيخلي علامات وبقع داكنة صعيبة فالإزالة. استعملي سيروم النياسيناميد لتهدئة المنطقة وتوحيد اللون."
+                  : "Percer un bouton propage les bactéries sous la peau, augmente l'inflammation et garantit des cicatrices pigmentaires durables. Laissez agir vos soins ciblés."}
               </p>
             </div>
 

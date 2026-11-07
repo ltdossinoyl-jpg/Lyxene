@@ -51,12 +51,10 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
 
   // Preset image choices
   const presetImages = [
-    { label: 'Savon Liquide', url: '/images/savon-liquide.jpg' },
-    { label: 'Sérum Visage', url: '/images/serum-visage.jpg' },
-    { label: 'Crème Visage', url: '/images/creme-visage.jpg' },
-    { label: 'Soin Localisé Tube', url: '/images/creme-tube.jpg' },
-    { label: 'Pack Complet 4-en-1', url: '/images/pack-complet.jpg' },
-    { label: 'Hero Pack Complet', url: '/images/hero-products.jpg' },
+    { label: 'Gel Nettoyant', url: '/images/gel-nettoyant.jpg' },
+    { label: 'Sérum Éclaircissant', url: '/images/serum-eclaircissant.jpg' },
+    { label: 'Crème Éclaircissante', url: '/images/creme-eclaircissante.jpg' },
+    { label: 'Pack Complet 3-en-1', url: '/images/pack-complet.jpg' },
   ];
 
   // Check saved session
