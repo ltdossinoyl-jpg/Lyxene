@@ -27,7 +27,7 @@ const WHATSAPP_NUMBER = '212600000000'; // Update with your real number
 
 const translations = {
   fr: {
-    brand: "LYXENE PARIS",
+    brand: "LYXENESKIN PARIS",
     tagline: "Révélez l'éclat naturel de votre peau",
     heroTitle: "La Routine Anti-Acné Experte & Naturelle",
     heroSubtitle: "Formulée à base d'Aloe Vera pur et d'Acide Salicylique pour purifier, apaiser et transformer votre grain de peau durablement.",
@@ -37,7 +37,7 @@ const translations = {
     saveBadge: "Économisez 55%",
     pricePack: "289 DH",
     oldPricePack: "636 DH",
-    featuresTitle: "Pourquoi Choisir LYXENE ?",
+    featuresTitle: "Pourquoi Choisir LYXENESKIN ?",
     feat1Title: "Formule Clinique & Douce",
     feat1Desc: "Enrichie en Acide Salicylique pour déboucher les pores sans agresser la barrière cutanée.",
     feat2Title: "Aloe Vera Bio Purifiant",
@@ -77,7 +77,7 @@ const translations = {
     sending: "Envoi en cours..."
   },
   ar: {
-    brand: "LYXENE PARIS",
+    brand: "LYXENESKIN PARIS",
     tagline: "أظهري الإشراقة الطبيعية لبشرتك",
     heroTitle: "المجموعة الطبية المتكاملة لعلاج حب الشباب",
     heroSubtitle: "تركيبة فريدة بخلاصة الألوفيرا النقية وحمض الساليسيليك لتنقية البشرة، تهدئة الاحمرار واستعادة نضارتها.",
@@ -87,7 +87,7 @@ const translations = {
     saveBadge: "خصم 55%",
     pricePack: "289 درهم",
     oldPricePack: "636 درهم",
-    featuresTitle: "لماذا تختارين LYXENE ؟",
+    featuresTitle: "لماذا تختارين LYXENESKIN ؟",
     feat1Title: "تركيبة طبية لطيفة",
     feat1Desc: "بحمض الساليسيليك الفعّال في تنظيف المسام بعمق دون تجفيف البشرة.",
     feat2Title: "ألوفيرا طبيعية مهدئة",
@@ -127,7 +127,7 @@ const translations = {
     sending: "جاري الإرسال..."
   },
   en: {
-    brand: "LYXENE PARIS",
+    brand: "LYXENESKIN PARIS",
     tagline: "Reveal Your Skin's Natural Radiance",
     heroTitle: "Expert Anti-Acne Botanical Skincare",
     heroSubtitle: "Powered by pure Aloe Vera and Salicylic Acid to purify, soothe, and visibly clear acne-prone skin.",
@@ -137,7 +137,7 @@ const translations = {
     saveBadge: "Save 55%",
     pricePack: "289 DH",
     oldPricePack: "636 DH",
-    featuresTitle: "Why Choose LYXENE ?",
+    featuresTitle: "Why Choose LYXENESKIN ?",
     feat1Title: "Clinical Grade & Gentle",
     feat1Desc: "Salicylic acid unclogs deep pores without damaging your delicate skin moisture barrier.",
     feat2Title: "Soothing Aloe Vera",
@@ -404,7 +404,7 @@ export default function App() {
         
         {/* Top Bar */}
         <div className="bg-[#2D4030] text-[#F7F4EE] text-xs py-2 px-4 text-center font-medium tracking-wide">
-          ✨ LYXENE PARIS — Botanical Skincare
+          ✨ LYXENESKIN PARIS — Botanical Skincare
         </div>
 
         {/* Thank You Content */}
@@ -470,7 +470,7 @@ export default function App() {
         {/* Footer */}
         <footer className="bg-[#2D4030] text-[#F7F4EE] py-8 px-6">
           <div className="max-w-6xl mx-auto text-center text-xs text-gray-300">
-            <span className="font-serif font-bold text-lg text-white block mb-1">LYXENE PARIS</span>
+            <span className="font-serif font-bold text-lg text-white block mb-1">LYXENESKIN PARIS</span>
             <p>© 2026 — Tous droits réservés.</p>
           </div>
         </footer>
@@ -502,11 +502,11 @@ export default function App() {
           <div className="flex items-center gap-3">
             <img 
               src="/images/logo.png" 
-              alt="LYXENE PARIS Logo" 
+              alt="LYXENESKIN PARIS Logo" 
               className="w-11 h-11 object-contain rounded-full shadow-sm"
             />
             <div>
-              <span className="text-xl font-bold tracking-widest text-[#2D4030] block font-serif">LYXENE</span>
+              <span className="text-xl font-bold tracking-widest text-[#2D4030] block font-serif">LYXENESKIN</span>
               <span className="text-[10px] tracking-wider text-[#A26D62] uppercase block font-semibold">Botanical Skincare</span>
             </div>
           </div>
@@ -597,7 +597,7 @@ export default function App() {
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#DFD6C7] bg-[#EFEAE1]">
             <img 
               src="/images/pack-complet.jpg" 
-              alt="Pack Complet LYXENE Skincare" 
+              alt="Pack Complet LYXENESKIN Skincare" 
               className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
@@ -674,7 +674,7 @@ export default function App() {
             <div className="bg-[#FBF9F5] rounded-3xl p-6 md:p-8 border-2 border-[#2D4030]/20 shadow-xl flex flex-col md:flex-row items-center gap-6">
               <img 
                 src="/images/pack-complet.jpg" 
-                alt="Pack Complet LYXENE" 
+                alt="Pack Complet LYXENESKIN" 
                 className="w-40 h-40 object-cover rounded-2xl border border-[#E5DEC8] shadow-md flex-shrink-0"
               />
               <div className="flex-1 text-center md:text-left">
@@ -880,7 +880,7 @@ export default function App() {
 
       {/* 6. Floating WhatsApp Button */}
       <a 
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxene%20anti-acné`}
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxeneskin%20anti-acné`}
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition flex items-center gap-2 group"
@@ -897,11 +897,11 @@ export default function App() {
           <div className="flex items-center gap-3">
             <img 
               src="/images/logo.png" 
-              alt="LYXENE PARIS Logo" 
+              alt="LYXENESKIN PARIS Logo" 
               className="w-10 h-10 object-contain rounded-full bg-white/10 p-0.5 border border-[#405844]"
             />
             <div>
-              <span className="font-serif font-bold text-lg text-white block">LYXENE PARIS</span>
+              <span className="font-serif font-bold text-lg text-white block">LYXENESKIN PARIS</span>
               <p className="mt-0.5 text-gray-400">© 2026 — Tous droits réservés.</p>
             </div>
           </div>

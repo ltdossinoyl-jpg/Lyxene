@@ -55,6 +55,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
     { label: 'Sérum Visage', url: '/images/serum-visage.jpg' },
     { label: 'Crème Visage', url: '/images/creme-visage.jpg' },
     { label: 'Soin Localisé Tube', url: '/images/creme-tube.jpg' },
+    { label: 'Pack Complet 4-en-1', url: '/images/pack-complet.jpg' },
     { label: 'Hero Pack Complet', url: '/images/hero-products.jpg' },
   ];
 
@@ -263,7 +264,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
     if (cleanPhone.startsWith('0')) {
       cleanPhone = '212' + cleanPhone.substring(1);
     }
-    const msg = `Salam ${name}, marhba bik f LYXENE Skincare! 🌿\nBghina n-akdou m3ak la commande dyalek N° *${orderId}* (${total} DH).\nWash l'adresse s7i7a bach nsiftoha lik ?`;
+    const msg = `Salam ${name}, marhba bik f LYXENESKIN Skincare! 🌿\nBghina n-akdou m3ak la commande dyalek N° *${orderId}* (${total} DH).\nWash l'adresse s7i7a bach nsiftoha lik ?`;
     return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
   };
 
@@ -293,10 +294,10 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
           <div className="text-center mb-8">
             <img 
               src="/images/logo.png" 
-              alt="LYXENE Logo" 
+              alt="LYXENESKIN Logo" 
               className="w-16 h-16 object-contain mx-auto mb-3 rounded-full shadow-md"
             />
-            <h1 className="font-serif font-bold text-2xl text-[#2D4030]">LYXENE PARIS</h1>
+            <h1 className="font-serif font-bold text-2xl text-[#2D4030]">LYXENESKIN PARIS</h1>
             <p className="text-xs text-[#A26D62] font-semibold uppercase tracking-wider mt-1">Espace Administration</p>
           </div>
 
@@ -356,12 +357,12 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
           <div className="flex items-center gap-3">
             <img 
               src="/images/logo.png" 
-              alt="LYXENE Logo" 
+              alt="LYXENESKIN Logo" 
               className="w-10 h-10 object-contain rounded-full bg-white/10 p-0.5"
             />
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-serif font-bold text-lg tracking-wider">LYXENE</span>
+                <span className="font-serif font-bold text-lg tracking-wider">LYXENESKIN</span>
                 <span className="bg-[#A26D62] text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Admin</span>
               </div>
               <span className="text-[11px] text-gray-300 block">Gestion Produits & Commandes COD</span>
