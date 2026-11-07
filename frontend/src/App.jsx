@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
-import { 
-  ShoppingBag, 
-  MessageCircle, 
-  ShieldCheck, 
-  Sparkles, 
-  Leaf, 
-  CreditCard, 
-  Lock, 
-  Star, 
-  Menu, 
-  X, 
-  Truck, 
-  CheckCircle, 
-  User, 
-  Phone, 
-  MapPin, 
-  FileText, 
-  Package, 
-  ArrowLeft, 
+import {
+  ShoppingBag,
+  MessageCircle,
+  ShieldCheck,
+  Sparkles,
+  Leaf,
+  CreditCard,
+  Lock,
+  Star,
+  Menu,
+  X,
+  Truck,
+  CheckCircle,
+  User,
+  Phone,
+  MapPin,
+  FileText,
+  Package,
+  ArrowLeft,
   Settings,
   Sun,
   Moon,
@@ -45,7 +45,7 @@ const translations = {
     bundleOffer: "Pack Complet 4-en-1 (Best-Seller)",
     saveBadge: "Économisez 55%",
     pricePack: "289 DH",
-    oldPricePack: "636 DH",
+    oldPricePack: "489 DH",
     featuresTitle: "Pourquoi Choisir LYXENESKIN ?",
     feat1Title: "Formule Clinique & Douce",
     feat1Desc: "Enrichie en Acide Salicylique pour déboucher les pores sans agresser la barrière cutanée.",
@@ -95,7 +95,7 @@ const translations = {
     bundleOffer: "المجموعة الكاملة 4 في 1 (الأكثر مبيعاً)",
     saveBadge: "خصم 55%",
     pricePack: "289 درهم",
-    oldPricePack: "636 درهم",
+    oldPricePack: "489 درهم",
     featuresTitle: "لماذا تختارين LYXENESKIN ؟",
     feat1Title: "تركيبة طبية لطيفة",
     feat1Desc: "بحمض الساليسيليك الفعّال في تنظيف المسام بعمق دون تجفيف البشرة.",
@@ -145,7 +145,7 @@ const translations = {
     bundleOffer: "Complete 4-Piece Routine (Best Seller)",
     saveBadge: "Save 55%",
     pricePack: "289 DH",
-    oldPricePack: "636 DH",
+    oldPricePack: "489 DH",
     featuresTitle: "Why Choose LYXENESKIN ?",
     feat1Title: "Clinical Grade & Gentle",
     feat1Desc: "Salicylic acid unclogs deep pores without damaging your delicate skin moisture barrier.",
@@ -272,7 +272,7 @@ export default function App() {
   const [orderId, setOrderId] = useState('');
   const [sending, setSending] = useState(false);
   const [formError, setFormError] = useState('');
-  
+
   // Form fields
   const [form, setForm] = useState({
     fullName: '',
@@ -298,7 +298,7 @@ export default function App() {
 
   useEffect(() => {
     fetchProducts();
-    
+
     // Check URL hash for admin route
     if (window.location.hash === '#admin') {
       setPage('admin');
@@ -393,7 +393,7 @@ export default function App() {
   // ============================================
   if (page === 'admin') {
     return (
-      <AdminDashboard 
+      <AdminDashboard
         backendUrl={BACKEND_URL}
         onBackToShop={() => {
           window.location.hash = '';
@@ -410,7 +410,7 @@ export default function App() {
   if (page === 'thankyou') {
     return (
       <div className={`min-h-screen bg-[#FBF9F5] text-[#1E2922] font-sans antialiased ${isRTL ? 'rtl text-right' : 'ltr text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-        
+
         {/* Top Bar */}
         <div className="bg-[#2D4030] text-[#F7F4EE] text-xs py-2 px-4 text-center font-medium tracking-wide">
           ✨ LYXENESKIN PARIS — Botanical Skincare
@@ -418,7 +418,7 @@ export default function App() {
 
         {/* Thank You Content */}
         <div className="max-w-lg mx-auto px-6 py-20 text-center">
-          
+
           {/* Success Icon */}
           <div className="w-24 h-24 mx-auto mb-8 bg-gradient-to-br from-[#2D4030] to-[#405844] rounded-full flex items-center justify-center shadow-lg">
             <CheckCircle className="w-12 h-12 text-white" />
@@ -427,7 +427,7 @@ export default function App() {
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-[#2D4030] mb-4">
             {t.thankYouTitle}
           </h1>
-          
+
           <p className="text-gray-600 text-base mb-6">
             {t.thankYouSubtitle}
           </p>
@@ -492,7 +492,7 @@ export default function App() {
   // ============================================
   return (
     <div className={`min-h-screen bg-[#FBF9F5] text-[#1E2922] font-sans antialiased ${isRTL ? 'rtl text-right' : 'ltr text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-      
+
       {/* 1. Top Announcement Bar */}
       <div className="bg-[#2D4030] text-[#F7F4EE] text-xs py-2 px-4 text-center font-medium tracking-wide flex justify-center items-center gap-4">
         <span>✨ {isRTL ? "توصيل سريع مجاني لجميع مدن المغرب ابتداءً من 300 درهم" : "Livraison Gratuite partout au Maroc dès 300 DH"}</span>
@@ -509,9 +509,9 @@ export default function App() {
       <header className="sticky top-0 z-40 bg-[#FBF9F5]/90 backdrop-blur-md border-b border-[#E8E1D5]">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img 
-              src="/images/logo.png" 
-              alt="LYXENESKIN PARIS Logo" 
+            <img
+              src="/images/logo.png"
+              alt="LYXENESKIN PARIS Logo"
               className="w-11 h-11 object-contain rounded-full shadow-sm"
             />
             <div>
@@ -529,7 +529,7 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setOrderOpen(true)}
               className="relative p-2.5 rounded-full bg-[#EFEAE1] hover:bg-[#E3DCD0] text-[#2D4030] transition"
             >
@@ -540,7 +540,7 @@ export default function App() {
                 </span>
               )}
             </button>
-            <button 
+            <button
               onClick={() => {
                 if (cart.length === 0) orderPack();
                 else setOrderOpen(true);
@@ -577,7 +577,7 @@ export default function App() {
                 <span className="text-xs bg-[#2D4030] text-[#F7F4EE] px-2 py-0.5 rounded-md font-bold">{t.saveBadge}</span>
               </div>
             </div>
-            <button 
+            <button
               onClick={orderPack}
               className="bg-[#2D4030] hover:bg-[#202E23] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow"
             >
@@ -604,9 +604,9 @@ export default function App() {
         {/* Hero Product Visual Card with Real Image */}
         <div className="relative group">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#DFD6C7] bg-[#EFEAE1]">
-            <img 
-              src="/images/pack-complet.jpg" 
-              alt="Pack Complet LYXENESKIN Skincare" 
+            <img
+              src="/images/pack-complet.jpg"
+              alt="Pack Complet LYXENESKIN Skincare"
               className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
@@ -650,11 +650,11 @@ export default function App() {
                     <span className="text-[10px] font-bold text-[#A26D62] uppercase tracking-wider">{p.tag}</span>
                     <span className="text-[10px] bg-[#EFEAE1] text-[#2D4030] font-semibold px-2 py-0.5 rounded-full">{p.badge}</span>
                   </div>
-                  
+
                   {/* Real Product Image */}
                   <div className="overflow-hidden rounded-xl mb-4 bg-white border border-[#EFEAE1] aspect-square flex items-center justify-center">
-                    <img 
-                      src={p.image} 
+                    <img
+                      src={p.image}
                       alt={isRTL ? p.arName : (lang === 'en' ? p.enName : p.name)}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -681,9 +681,9 @@ export default function App() {
           {/* Pack Order CTA below products */}
           <div className="mt-12 max-w-2xl mx-auto">
             <div className="bg-[#FBF9F5] rounded-3xl p-6 md:p-8 border-2 border-[#2D4030]/20 shadow-xl flex flex-col md:flex-row items-center gap-6">
-              <img 
-                src="/images/pack-complet.jpg" 
-                alt="Pack Complet LYXENESKIN" 
+              <img
+                src="/images/pack-complet.jpg"
+                alt="Pack Complet LYXENESKIN"
                 className="w-40 h-40 object-cover rounded-2xl border border-[#E5DEC8] shadow-md flex-shrink-0"
               />
               <div className="flex-1 text-center md:text-left">
@@ -701,7 +701,7 @@ export default function App() {
                   <span className="text-sm line-through text-gray-400">{t.oldPricePack}</span>
                   <span className="text-xs bg-[#2D4030] text-[#F7F4EE] px-2 py-0.5 rounded-md font-bold">{t.saveBadge}</span>
                 </div>
-                <button 
+                <button
                   onClick={orderPack}
                   className="w-full md:w-auto bg-[#2D4030] hover:bg-[#202E23] text-white px-8 py-3 rounded-xl font-bold text-sm transition shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                 >
@@ -720,7 +720,7 @@ export default function App() {
       ========================================================= */}
       <section id="routine" className="py-20 bg-[#FBF9F5] border-b border-[#E8E1D5] px-6">
         <div className="max-w-6xl mx-auto">
-          
+
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-bold text-[#A26D62] uppercase tracking-widest inline-block mb-2">
@@ -731,21 +731,21 @@ export default function App() {
             </h2>
             <div className="w-16 h-0.5 bg-[#A26D62] mx-auto mt-4 mb-4"></div>
             <p className="text-sm text-gray-600 leading-relaxed">
-              {isRTL 
+              {isRTL
                 ? "اتبعي هذا الروتين البسيط صباحاً ومساءً المخصص لمجموعة LYXENESKIN لتهدئة الالتهابات، تنظيف المسام بعمق، والتخلص النهائي من الحبوب وآثارها."
-                : (lang === 'en' 
-                    ? "Follow this simple morning & evening routine designed specifically for the LYXENESKIN 4-in-1 pack to clear blemishes, calm inflammation and prevent breakouts."
-                    : "Pour maximiser l'efficacité de vos 4 soins LYXENESKIN, suivez ce protocole pensé par nos dermatologues. Respectez l'ordre d'application pour une absorption optimale.")}
+                : (lang === 'en'
+                  ? "Follow this simple morning & evening routine designed specifically for the LYXENESKIN 4-in-1 pack to clear blemishes, calm inflammation and prevent breakouts."
+                  : "Pour maximiser l'efficacité de vos 4 soins LYXENESKIN, suivez ce protocole pensé par nos dermatologues. Respectez l'ordre d'application pour une absorption optimale.")}
             </p>
           </div>
 
           {/* Morning vs Evening Timeline */}
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            
+
             {/* Morning Routine Card */}
             <div className="bg-white rounded-3xl p-8 border border-[#DFD6C7] shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-full blur-2xl pointer-events-none -mr-10 -mt-10"></div>
-              
+
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-amber-100/80 text-amber-700 flex items-center justify-center">
                   <Sun className="w-6 h-6" />
@@ -811,7 +811,7 @@ export default function App() {
             {/* Evening Routine Card */}
             <div className="bg-white rounded-3xl p-8 border border-[#DFD6C7] shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-2xl pointer-events-none -mr-10 -mt-10"></div>
-              
+
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-indigo-100/80 text-indigo-700 flex items-center justify-center">
                   <Moon className="w-6 h-6" />
@@ -893,12 +893,12 @@ export default function App() {
                 {isRTL ? "كيفاش تلاحظي الفرق فـ 14 يوم فقط؟" : "Comment voir les premiers résultats en 14 jours ?"}
               </h3>
               <p className="text-xs text-gray-300 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "الاستمرارية مرتين فاليوم (صباحاً ومساءً)، عدم لمس الحبوب باليدين، وشرب 2 لتر من الماء يومياً كيضمن ليك تصفية كاملة للبشرة."
                   : "Une application régulière matin et soir sans sauter d'étape, combinée à une bonne hydratation, permet d'éliminer 94% des imperfections dès 2 semaines."}
               </p>
             </div>
-            <button 
+            <button
               onClick={orderPack}
               className="bg-[#F7F4EE] hover:bg-white text-[#2D4030] px-6 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition shadow-lg flex-shrink-0 flex items-center gap-2 cursor-pointer"
             >
@@ -915,7 +915,7 @@ export default function App() {
       ========================================================= */}
       <section id="blog" className="py-20 bg-[#F4EFE6] border-b border-[#E8E1D5] px-6">
         <div className="max-w-6xl mx-auto">
-          
+
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-bold text-[#A26D62] uppercase tracking-widest inline-block mb-2">
@@ -926,17 +926,17 @@ export default function App() {
             </h2>
             <div className="w-16 h-0.5 bg-[#A26D62] mx-auto mt-4 mb-4"></div>
             <p className="text-sm text-gray-600">
-              {isRTL 
+              {isRTL
                 ? "عادات يومية بسيطة معتمدة من أطباء الجلد لتسريع علاج حب الشباب والحفاظ على نضارة وإشراقة بشرتك."
-                : (lang === 'en' 
-                    ? "Essential daily habits approved by dermatologists to treat breakouts, clear acne marks and maintain healthy glowing skin."
-                    : "Les réflexes indispensables validés par les dermatologues pour dire adieu aux boutons, réguler le sébum et retrouver confiance.")}
+                : (lang === 'en'
+                  ? "Essential daily habits approved by dermatologists to treat breakouts, clear acne marks and maintain healthy glowing skin."
+                  : "Les réflexes indispensables validés par les dermatologues pour dire adieu aux boutons, réguler le sébum et retrouver confiance.")}
             </p>
           </div>
 
           {/* 10 Tips Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            
+
             {/* Tip 1 */}
             <div className="bg-[#FBF9F5] rounded-2xl p-6 border border-[#E5DEC8] shadow-sm hover:shadow-md transition space-y-3">
               <div className="w-10 h-10 rounded-xl bg-[#2D4030] text-white flex items-center justify-center font-bold text-sm font-mono">
@@ -946,7 +946,7 @@ export default function App() {
                 {isRTL ? "ماتقيصيش الحبوب بيديك نهائياً" : "Ne touchez jamais à vos boutons"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "عصر الحبوب كينقل البكتيريا للأماكن السليمة، كيزيد من الالتهاب وكيخلي علامات وبقع داكنة صعيبة فالإزالة. استعملي Soin Localisé Tube فبلاصتها."
                   : "Percer un bouton propage les bactéries sous la peau, augmente l'inflammation et garantit des cicatrices pigmentaires durables. Utilisez le soin SOS ciblé."}
               </p>
@@ -961,7 +961,7 @@ export default function App() {
                 {isRTL ? "بدلي غشاء الوسادة (Taie d'oreiller) بانتظام" : "Changez votre taie d'oreiller tous les 3 jours"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "الوسادة كتجمع العرق، الزيوت وخلايا الجلد الميتة كل ليلة. بدلي الغشاء مرتين فالسيمانة على الأقل، ويفضل وسادة من الحرير أو القطن النقي."
                   : "Le tissu absorbe le sébum, les résidus capillaires et les bactéries chaque nuit. Utilisez une taie en soie ou en coton lavée très régulièrement."}
               </p>
@@ -976,7 +976,7 @@ export default function App() {
                 {isRTL ? "ماتستغنايش على الترطيب وخا تكون بشرتك دهنية" : "N'ayez pas peur d'hydrater une peau grasse"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "إذا حرمتي البشرة الدهنية من الترطيب، كتدير رد فعل وكتفرز دهون كتر باش تحمي راسها. استعملي Crème Visage LYXENESKIN ذات التركيبة الخفيفة."
                   : "Déshydratée, une peau acnéique surproduit du sébum pour se protéger. Une crème légère à l'Aloe Vera équilibre et apaise immédiatement."}
               </p>
@@ -991,7 +991,7 @@ export default function App() {
                 {isRTL ? "مسحي شاشة الهاتف ديالك يومياً" : "Désinfectez l'écran de votre téléphone"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "شاشة الهاتف كتجمع بكتيريا كتر من مقعد المرحاض! فاش كتحطيها على وجهك فالمكالمات كتسبب حبوب على الخدين والفك."
                   : "Véritable nid à bactéries, coller son smartphone contre sa joue lors d'appels provoque souvent des poussées d'acné sur les mâchoires."}
               </p>
@@ -1006,7 +1006,7 @@ export default function App() {
                 {isRTL ? "غسلي وجهك بالماء الفاتر ماشي الساخن" : "Lavez votre visage à l'eau tiède, jamais chaude"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "الماء الساخن كيدمر الحاجز الواقي للبشرة وكيسبب الجفاف وتهيج الحبوب. الماء الفاتر هو الأفضل لفتح المسام بلطف."
                   : "L'eau trop chaude agresse le film hydrolipidique naturel et stimule les glandes sébacées. L'eau tiède est idéale pour purifier en douceur."}
               </p>
@@ -1021,7 +1021,7 @@ export default function App() {
                 {isRTL ? "شربي ما لا يقل عن 1.5 إلى 2 لتر من الماء" : "Buvez 1,5L à 2L d'eau par jour"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "الترطيب الداخلي كيساعد الجسم يتخلص من السموم، كيحسن مرونة البشرة وكيخلي إشراقتها طبيعية بدون شوائب."
                   : "L'hydratation commence de l'intérieur. Boire suffisamment aide les reins à filtrer les toxines et favorise la cicatrisation cutanée."}
               </p>
@@ -1036,7 +1036,7 @@ export default function App() {
                 {isRTL ? "استعملي فوطة خاصة بالوجه بوحدو" : "Utilisez une serviette dédiée uniquement au visage"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "ماتستعمليش نفس الفوطة ديال الجسم أو اليدين. خصصي فوطة صغيرة ناعمة ونشفي وجهك بالطبطبة الخفيفة ماشي الحك."
                   : "Ne séchez jamais votre visage avec la serviette de bain ou des mains. Tapotez avec une petite serviette propre sans frotter."}
               </p>
@@ -1051,7 +1051,7 @@ export default function App() {
                 {isRTL ? "نقصي من السكر والمقليات فالتغذية ديالك" : "Réduisez le sucre raffiné et les produits laitiers"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "الأطعمة الغنية بالسكر كترفع الأنسولين وكتنشط الهرمونات المسببة للإفرازات الدهنية وظهور الحبوب المفاجئة."
                   : "Les pics d'insuline provoqués par les sodas, pâtisseries et excès de laitages augmentent l'inflammation cutanée et l'acné kystique."}
               </p>
@@ -1066,7 +1066,7 @@ export default function App() {
                 {isRTL ? "نعسي من 7 لـ 8 سوايع كل ليلة" : "Offrez-vous un sommeil réparateur (7h à 8h)"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "أثناء النوم، الجسم كيفرز الكولاجين وكيصلح الخلايا المتضررة. قلة النعاس كترفع الكورتيزول وكتهيج الحبوب."
                   : "C'est entre 23h et 4h du matin que la peau se répare et synthétise le collagène. Le manque de sommeil accélère le vieillissement et l'acné."}
               </p>
@@ -1081,7 +1081,7 @@ export default function App() {
                 {isRTL ? "الاستمرارية والصبر هما المفتاح" : "La régularité : laissez le temps aux actifs d'agir"}
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
-                {isRTL 
+                {isRTL
                   ? "دورة تجدد البشرة كتاخد من 21 حتى 28 يوم. متقطعيش الروتين حتى تكملي المجموعة وغادي تشوفي الفرق المبهر بنفسك."
                   : "Le cycle de renouvellement cellulaire dure 28 jours. La patience et la fidélité à la routine 4-en-1 sont le secret d'une peau définitivement nette."}
               </p>
@@ -1097,7 +1097,7 @@ export default function App() {
       ========================================================= */}
       <section id="contact" className="py-20 bg-[#FBF9F5] px-6">
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="text-center max-w-xl mx-auto mb-14">
             <span className="text-xs font-bold text-[#A26D62] uppercase tracking-widest inline-block mb-2">
               {isRTL ? "خدمة الزبناء" : (lang === 'en' ? "Customer Care" : "Support & Assistance")}
@@ -1107,18 +1107,18 @@ export default function App() {
             </h2>
             <div className="w-12 h-0.5 bg-[#A26D62] mx-auto mt-3 mb-3"></div>
             <p className="text-xs text-gray-600">
-              {isRTL 
+              {isRTL
                 ? "فريق LYXENESKIN في خدمتكم للإجابة على جميع استفساراتكم حول المنتجات وطرق الاستعمال ومتابعة الطلبيات."
-                : (lang === 'en' 
-                    ? "Our skincare advisors are available 7 days a week to help with your routine, order tracking, and delivery questions."
-                    : "Notre équipe beauté vous répond 7j/7 pour vous conseiller sur votre routine ou suivre votre livraison COD.")}
+                : (lang === 'en'
+                  ? "Our skincare advisors are available 7 days a week to help with your routine, order tracking, and delivery questions."
+                  : "Notre équipe beauté vous répond 7j/7 pour vous conseiller sur votre routine ou suivre votre livraison COD.")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            
+
             {/* WhatsApp Direct */}
-            <a 
+            <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxeneskin`}
               target="_blank"
               rel="noopener noreferrer"
@@ -1204,7 +1204,7 @@ export default function App() {
       {orderOpen && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-end">
           <div className="w-full max-w-md bg-[#FBF9F5] h-full shadow-2xl p-6 flex flex-col overflow-y-auto">
-            
+
             {/* Header */}
             <div className="flex items-center justify-between pb-4 border-b border-[#E8E1D5] mb-4">
               <div className="flex items-center gap-2">
@@ -1227,16 +1227,16 @@ export default function App() {
                 <div className="space-y-2">
                   {cart.map((item) => (
                     <div key={item.id} className="flex justify-between items-center text-xs bg-[#F2EDE4] p-3 rounded-xl gap-3">
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
+                      <img
+                        src={item.image}
+                        alt={item.name}
                         className="w-10 h-10 rounded-lg object-cover bg-white border border-[#E5DEC8]"
                       />
                       <div className="flex-1">
                         <p className="font-bold text-[#2D4030]">{isRTL ? item.arName : item.name}</p>
                         <p className="text-gray-500 text-[11px]">{item.priceLabel}</p>
                       </div>
-                      <button 
+                      <button
                         onClick={() => setCart(cart.filter(i => i.id !== item.id))}
                         className="text-red-500 text-[11px] hover:underline"
                       >
@@ -1260,7 +1260,7 @@ export default function App() {
             {/* Order Form */}
             {cart.length > 0 && (
               <div className="space-y-3 flex-1">
-                
+
                 {/* Full Name */}
                 <div>
                   <label className="text-[11px] text-gray-500 flex items-center gap-1 mb-1">
@@ -1348,7 +1348,7 @@ export default function App() {
                   <span className="text-sm font-semibold text-gray-600">{t.total}:</span>
                   <span className="text-xl font-bold text-[#2D4030]">{totalPrice} DH</span>
                 </div>
-                <button 
+                <button
                   onClick={handleSubmitOrder}
                   disabled={sending}
                   className="w-full bg-[#2D4030] hover:bg-[#202E23] disabled:bg-[#2D4030]/60 text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition cursor-pointer"
@@ -1373,9 +1373,9 @@ export default function App() {
       )}
 
       {/* 6. Floating WhatsApp Button */}
-      <a 
+      <a
         href={`https://wa.me/${WHATSAPP_NUMBER}?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxeneskin%20anti-acné`}
-        target="_blank" 
+        target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition flex items-center gap-2 group"
       >
@@ -1389,9 +1389,9 @@ export default function App() {
       <footer className="bg-[#2D4030] text-[#F7F4EE] py-12 px-6 border-t border-[#405844]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-300">
           <div className="flex items-center gap-3">
-            <img 
-              src="/images/logo.png" 
-              alt="LYXENESKIN PARIS Logo" 
+            <img
+              src="/images/logo.png"
+              alt="LYXENESKIN PARIS Logo"
               className="w-10 h-10 object-contain rounded-full bg-white/10 p-0.5 border border-[#405844]"
             />
             <div>
@@ -1403,11 +1403,11 @@ export default function App() {
             <a href="#" className="hover:underline">Conditions Générales</a>
             <a href="#" className="hover:underline">Politique de Confidentialité</a>
             <a href="#" className="hover:underline">Contactez-nous</a>
-            <button 
+            <button
               onClick={() => {
                 window.location.hash = '#admin';
                 setPage('admin');
-              }} 
+              }}
               className="text-[11px] bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-lg transition font-semibold flex items-center gap-1.5 cursor-pointer border border-[#405844]"
             >
               <Settings className="w-3.5 h-3.5" />
