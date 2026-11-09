@@ -259,7 +259,22 @@ const PACK_PRODUCT = {
 };
 
 export default function App() {
-  const [lang, setLang] = useState('fr');
+  const [lang, setLang] = useState(() => {
+    try {
+      return localStorage.getItem('lyxene_lang') || 'ar';
+    } catch {
+      return 'ar';
+    }
+  });
+
+  const handleSetLang = (newLang) => {
+    setLang(newLang);
+    try {
+      localStorage.setItem('lyxene_lang', newLang);
+      document.documentElement.lang = newLang;
+      document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+    } catch (e) {}
+  };
   const [products, setProducts] = useState(INITIAL_PRODUCTS);
   const [cart, setCart] = useState([]);
   const [orderOpen, setOrderOpen] = useState(false);
@@ -526,11 +541,11 @@ export default function App() {
           </a>
 
           <div className="flex gap-2 items-center border-l border-[#405844] pl-3">
-            <button onClick={() => setLang('fr')} className={`hover:underline ${lang === 'fr' ? 'font-bold underline text-white' : 'text-gray-300'}`}>FR</button>
+            <button onClick={() => handleSetLang('ar')} className={`hover:underline ${lang === 'ar' ? 'font-bold underline text-white' : 'text-gray-300'}`}>عربي</button>
             <span className="text-gray-500">•</span>
-            <button onClick={() => setLang('ar')} className={`hover:underline ${lang === 'ar' ? 'font-bold underline text-white' : 'text-gray-300'}`}>عربي</button>
+            <button onClick={() => handleSetLang('fr')} className={`hover:underline ${lang === 'fr' ? 'font-bold underline text-white' : 'text-gray-300'}`}>FR</button>
             <span className="text-gray-500">•</span>
-            <button onClick={() => setLang('en')} className={`hover:underline ${lang === 'en' ? 'font-bold underline text-white' : 'text-gray-300'}`}>EN</button>
+            <button onClick={() => handleSetLang('en')} className={`hover:underline ${lang === 'en' ? 'font-bold underline text-white' : 'text-gray-300'}`}>EN</button>
           </div>
         </div>
       </div>
