@@ -591,7 +591,7 @@ export default function App() {
         <div className="relative group">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#DFD6C7] bg-[#EFEAE1]">
             <img
-              src="/images/pack-complet.jpg"
+              src="/images/hero-products.jpg"
               alt="Pack Complet LYXENESKIN Skincare"
               className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
             />
@@ -668,7 +668,7 @@ export default function App() {
           <div className="mt-12 max-w-2xl mx-auto">
             <div className="bg-[#FBF9F5] rounded-3xl p-6 md:p-8 border-2 border-[#2D4030]/20 shadow-xl flex flex-col md:flex-row items-center gap-6">
               <img
-                src="/images/pack-complet.jpg"
+                src="/images/pack-lifestyle.jpg"
                 alt="Pack Complet LYXENESKIN"
                 className="w-40 h-40 object-cover rounded-2xl border border-[#E5DEC8] shadow-md flex-shrink-0"
               />
@@ -702,6 +702,31 @@ export default function App() {
       </section>
 
       {/* =========================================================
+          SECTION: VISUAL GALLERY (Rich product lifestyle images)
+      ========================================================= */}
+      <section className="py-16 bg-[#FBF9F5] px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-serif font-bold text-[#2D4030]">
+              {isRTL ? "المجموعة الكاملة بالصور" : (lang === 'en' ? "The Complete Collection" : "La Gamme en Images")}
+            </h2>
+            <div className="w-12 h-0.5 bg-[#A26D62] mx-auto mt-3"></div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#DFD6C7] group">
+              <img src="/images/pack-complet.jpg" alt="Pack LYXENESKIN sur plateau en marbre" className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#DFD6C7] group">
+              <img src="/images/pack-lifestyle.jpg" alt="Pack LYXENESKIN lifestyle" className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#DFD6C7] group">
+              <img src="/images/gel-infographic.jpg" alt="Gel Nettoyant LYXENESKIN infographie" className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
           SECTION: LA ROUTINE (Guide d'utilisation matin & soir)
       ========================================================= */}
       <section id="routine" className="py-20 bg-[#FBF9F5] border-b border-[#E8E1D5] px-6">
@@ -723,6 +748,15 @@ export default function App() {
                   ? "Follow this simple morning & evening routine designed specifically for the LYXENESKIN 3-in-1 pack to brighten your skin, clear acne marks and achieve a glowing complexion."
                   : "Pour maximiser l'efficacité de vos 3 soins LYXENESKIN (Gel Nettoyant, Sérum Éclaircissant, Crème Hydratante), suivez ce protocole pensé par nos dermatologues. Respectez l'ordre d'application pour une absorption optimale.")}
             </p>
+          </div>
+
+          {/* Visual Routine Steps Image */}
+          <div className="mb-14 rounded-3xl overflow-hidden shadow-xl border border-[#DFD6C7] max-w-3xl mx-auto">
+            <img
+              src="/images/routine-steps.jpg"
+              alt={isRTL ? "خطوات الروتين الكامل" : "Les 3 étapes de la routine LYXENESKIN"}
+              className="w-full object-cover"
+            />
           </div>
 
           {/* Morning vs Evening Timeline */}
