@@ -118,7 +118,7 @@ export default function AdminDashboard({ backendUrl, onBackToShop, onProductsUpd
       const oRes = await fetch(`${backendUrl}/api/orders`);
       if (oRes.ok) {
         const oData = await oRes.json();
-        setOrders(oData.orders || []);
+        setOrders(Array.isArray(oData) ? oData : (oData.orders || []));
       }
 
       // Fetch Settings
