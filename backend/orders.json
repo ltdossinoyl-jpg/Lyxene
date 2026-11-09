@@ -1,0 +1,22 @@
+[
+  {
+    "id": "LYX-794501",
+    "fullName": "Ahlam el jazouli",
+    "phone": "+212 6 52 21 79 45",
+    "city": "Marrakech",
+    "address": "izdihar a cote de ahlam pecheur",
+    "notes": "Commande test confirmée",
+    "items": [
+      {
+        "id": 99,
+        "name": "Pack Complet Éclat & Anti-Imperfections 3-en-1",
+        "price": 289
+      }
+    ],
+    "total": 289,
+    "paymentMethod": "COD",
+    "status": "pending",
+    "createdAt": "2026-11-09T01:45:00.000Z"
+  }
+]
+
