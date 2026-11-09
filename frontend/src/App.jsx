@@ -27,12 +27,22 @@ import {
   HelpCircle,
   Mail,
   Send,
-  Check
+  Check,
+  Instagram
 } from 'lucide-react';
 import AdminDashboard from './AdminDashboard.jsx';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://lyxene.onrender.com';
-const WHATSAPP_NUMBER = '212600000000'; // Update with your real number
+const WHATSAPP_NUMBER = '212664435744';
+const WHATSAPP_DISPLAY = '+212 664-435744';
+const TIKTOK_URL = 'https://www.tiktok.com/@linacsmtq.fr20?_r=1&_t=ZS-9BBtUy95Kz3';
+const INSTAGRAM_URL = 'https://www.instagram.com/lyxen.e?vrfl=MW42MXFkNmwxZTAwbA==';
+
+const TikTokIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.31 6.31 0 0 0 1.86-4.49V8.75a8.16 8.16 0 0 0 4.91 1.63v-3.45a4.85 4.85 0 0 1-1-.24z"/>
+  </svg>
+);
 
 const translations = {
   fr: {
@@ -480,14 +490,48 @@ export default function App() {
     <div className={`min-h-screen bg-[#FBF9F5] text-[#1E2922] font-sans antialiased ${isRTL ? 'rtl text-right' : 'ltr text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
 
       {/* 1. Top Announcement Bar */}
-      <div className="bg-[#2D4030] text-[#F7F4EE] text-xs py-2 px-4 text-center font-medium tracking-wide flex justify-center items-center gap-4">
-        <span>✨ {isRTL ? "توصيل سريع مجاني لجميع مدن المغرب ابتداءً من 300 درهم" : "Livraison Gratuite partout au Maroc dès 300 DH"}</span>
-        <div className="flex gap-2 items-center border-l border-[#405844] pl-3">
-          <button onClick={() => setLang('fr')} className={`hover:underline ${lang === 'fr' ? 'font-bold underline' : ''}`}>FR</button>
-          <span>•</span>
-          <button onClick={() => setLang('ar')} className={`hover:underline ${lang === 'ar' ? 'font-bold underline' : ''}`}>عربي</button>
-          <span>•</span>
-          <button onClick={() => setLang('en')} className={`hover:underline ${lang === 'en' ? 'font-bold underline' : ''}`}>EN</button>
+      <div className="bg-[#2D4030] text-[#F7F4EE] text-xs py-2 px-6 flex flex-wrap justify-between items-center gap-3">
+        <div className="flex items-center gap-3 mx-auto md:mx-0">
+          <span>✨ {isRTL ? "توصيل سريع مجاني لجميع مدن المغرب ابتداءً من 300 درهم" : "Livraison Gratuite partout au Maroc dès 300 DH"}</span>
+        </div>
+
+        <div className="flex items-center gap-4 mx-auto md:mx-0">
+          <a
+            href={TIKTOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white text-gray-300 transition"
+            title="TikTok: @linacsmtq.fr20"
+          >
+            <TikTokIcon className="w-3.5 h-3.5" />
+          </a>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#E1306C] text-gray-300 transition"
+            title="Instagram: @lyxen.e"
+          >
+            <Instagram className="w-3.5 h-3.5" />
+          </a>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#25D366] text-gray-300 transition flex items-center gap-1 font-mono text-[11px]"
+            title="WhatsApp: +212 664-435744"
+          >
+            <MessageCircle className="w-3.5 h-3.5 fill-current" />
+            <span>{WHATSAPP_DISPLAY}</span>
+          </a>
+
+          <div className="flex gap-2 items-center border-l border-[#405844] pl-3">
+            <button onClick={() => setLang('fr')} className={`hover:underline ${lang === 'fr' ? 'font-bold underline text-white' : 'text-gray-300'}`}>FR</button>
+            <span className="text-gray-500">•</span>
+            <button onClick={() => setLang('ar')} className={`hover:underline ${lang === 'ar' ? 'font-bold underline text-white' : 'text-gray-300'}`}>عربي</button>
+            <span className="text-gray-500">•</span>
+            <button onClick={() => setLang('en')} className={`hover:underline ${lang === 'en' ? 'font-bold underline text-white' : 'text-gray-300'}`}>EN</button>
+          </div>
         </div>
       </div>
 
@@ -1122,60 +1166,101 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
 
-            {/* WhatsApp Direct */}
+            {/* 1. WhatsApp Direct */}
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=Salam,%20bghit%20nswel%203la%20gamme%20Lyxeneskin`}
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Salam, bghit nswel 3la gamme Lyxeneskin")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group cursor-pointer"
+              className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm hover:shadow-xl hover:border-green-400 transition-all duration-300 text-center flex flex-col items-center group cursor-pointer"
             >
-              <div className="w-14 h-14 rounded-2xl bg-green-50 text-[#25D366] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 rounded-2xl bg-[#E8F8EE] text-[#25D366] flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-[#25D366] group-hover:text-white transition-all shadow-sm">
                 <MessageCircle className="w-7 h-7 fill-current" />
               </div>
               <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
-                {isRTL ? "واتساب مباشر" : "WhatsApp Direct"}
+                WhatsApp
               </h3>
-              <p className="text-xs text-gray-500 mb-3">
-                {isRTL ? "إجابة فورية من خبيرات العناية" : "Réponse rapide en moins de 15 minutes"}
+              <p className="text-xs font-mono font-bold text-[#25D366] mb-2">
+                {WHATSAPP_DISPLAY}
               </p>
-              <span className="text-xs font-bold text-[#25D366] underline">
-                {isRTL ? "بدء المحادثة الآن ←" : "Discuter sur WhatsApp →"}
+              <p className="text-xs text-gray-500 mb-4 leading-relaxed">
+                {isRTL ? "تواصل مباشر مع خدمة الزبناء 7j/7" : "Réponse rapide pour vos commandes et conseils 7j/7"}
+              </p>
+              <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-bold text-[#25D366] group-hover:underline">
+                {isRTL ? "دردشة على واتساب ←" : "Envoyer un message →"}
               </span>
             </a>
 
-            {/* Phone support */}
-            <div className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm text-center flex flex-col items-center">
-              <div className="w-14 h-14 rounded-2xl bg-[#EFEAE1] text-[#2D4030] flex items-center justify-center mb-4">
+            {/* 2. Instagram */}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm hover:shadow-xl hover:border-pink-300 transition-all duration-300 text-center flex flex-col items-center group cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-100 via-pink-100 to-purple-100 text-[#E1306C] flex items-center justify-center mb-4 group-hover:scale-110 group-hover:from-[#E1306C] group-hover:to-[#C13584] group-hover:text-white transition-all shadow-sm">
+                <Instagram className="w-7 h-7" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
+                Instagram
+              </h3>
+              <p className="text-xs font-semibold text-[#E1306C] mb-2">
+                @lyxen.e
+              </p>
+              <p className="text-xs text-gray-500 mb-4 leading-relaxed">
+                {isRTL ? "نتائج الزبناء، تجارب حقيقية وقبل/بعد" : "Résultats clients, avant/après et nouveautés"}
+              </p>
+              <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-bold text-[#E1306C] group-hover:underline">
+                {isRTL ? "متابعة على إنستغرام ←" : "Suivre sur Instagram →"}
+              </span>
+            </a>
+
+            {/* 3. TikTok */}
+            <a
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm hover:shadow-xl hover:border-gray-800 transition-all duration-300 text-center flex flex-col items-center group cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-gray-100 text-black flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-black group-hover:text-white transition-all shadow-sm">
+                <TikTokIcon className="w-7 h-7" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
+                TikTok
+              </h3>
+              <p className="text-xs font-semibold text-black mb-2">
+                @linacsmtq.fr20
+              </p>
+              <p className="text-xs text-gray-500 mb-4 leading-relaxed">
+                {isRTL ? "فيديوهات طريقة الاستعمال والروتين اليومي" : "Tutos, vidéos routines et démonstrations en direct"}
+              </p>
+              <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-bold text-gray-900 group-hover:underline">
+                {isRTL ? "مشاهدة على تيك توك ←" : "Voir sur TikTok →"}
+              </span>
+            </a>
+
+            {/* 4. Phone Support */}
+            <a
+              href={`tel:${WHATSAPP_DISPLAY.replace(/[\s-]+/g, '')}`}
+              className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm hover:shadow-xl hover:border-[#2D4030] transition-all duration-300 text-center flex flex-col items-center group cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-[#EFEAE1] text-[#2D4030] flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-[#2D4030] group-hover:text-white transition-all shadow-sm">
                 <Phone className="w-7 h-7" />
               </div>
               <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
-                {isRTL ? "الاتصال الهاتفي" : "Support Téléphonique"}
+                {isRTL ? "الاتصال الهاتفي" : "Appel Direct"}
               </h3>
-              <p className="text-xs text-gray-500 mb-3">
-                {isRTL ? "من الإثنين إلى السبت (9h - 19h)" : "Du Lundi au Samedi, 9h à 19h"}
+              <p className="text-xs font-mono font-bold text-[#2D4030] mb-2">
+                {WHATSAPP_DISPLAY}
               </p>
-              <span className="text-xs font-bold text-[#2D4030] font-mono">
-                +212 6 00 00 00 00
-              </span>
-            </div>
-
-            {/* Delivery Guarantee */}
-            <div className="bg-white rounded-3xl p-6 border border-[#DFD6C7] shadow-sm text-center flex flex-col items-center">
-              <div className="w-14 h-14 rounded-2xl bg-[#EFE4DE] text-[#A26D62] flex items-center justify-center mb-4">
-                <Truck className="w-7 h-7" />
-              </div>
-              <h3 className="font-serif font-bold text-base text-[#2D4030] mb-1">
-                {isRTL ? "التوصيل والدفع عند الاستلام" : "Livraison & Suivi COD"}
-              </h3>
-              <p className="text-xs text-gray-500 mb-3">
-                {isRTL ? "توصيل خلال 24h إلى 48h بجميع مدن المغرب" : "Partout au Maroc en 24h à 48h"}
+              <p className="text-xs text-gray-500 mb-4 leading-relaxed">
+                {isRTL ? "من الإثنين إلى السبت (9h - 19h)" : "Lundi au Samedi (9h - 19h) — Appel direct"}
               </p>
-              <span className="text-xs font-bold text-[#A26D62]">
-                {isRTL ? "الدفع بعد المعاينة" : "Paiement à la réception"}
+              <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-bold text-[#2D4030] group-hover:underline">
+                {isRTL ? "اتصلي بنا الآن ←" : "Appeler le service →"}
               </span>
-            </div>
+            </a>
 
           </div>
 
@@ -1394,33 +1479,75 @@ export default function App() {
 
       {/* 7. Footer */}
       <footer className="bg-[#2D4030] text-[#F7F4EE] py-12 px-6 border-t border-[#405844]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-300">
-          <div className="flex items-center gap-3">
-            <img
-              src="/images/logo.png"
-              alt="LYXENESKIN PARIS Logo"
-              className="w-10 h-10 object-contain rounded-full bg-white/10 p-0.5 border border-[#405844]"
-            />
-            <div>
-              <span className="font-serif font-bold text-lg text-white block">LYXENESKIN PARIS</span>
-              <p className="mt-0.5 text-gray-400">© 2026 — Tous droits réservés.</p>
+        <div className="max-w-6xl mx-auto space-y-8">
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <img
+                src="/images/logo.png"
+                alt="LYXENESKIN PARIS Logo"
+                className="w-12 h-12 object-contain rounded-full bg-white/10 p-0.5 border border-[#405844]"
+              />
+              <div>
+                <span className="font-serif font-bold text-xl text-white block">LYXENESKIN PARIS</span>
+                <p className="mt-0.5 text-xs text-gray-400">Botanical Skincare — Révélez l'éclat de votre peau.</p>
+              </div>
+            </div>
+
+            {/* Social Media Links Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-white/10 hover:bg-black text-white px-4 py-2 rounded-full text-xs font-semibold transition border border-white/10 shadow-sm"
+              >
+                <TikTokIcon className="w-4 h-4" />
+                <span>TikTok</span>
+              </a>
+
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-white/10 hover:bg-[#E1306C] text-white px-4 py-2 rounded-full text-xs font-semibold transition border border-white/10 shadow-sm"
+              >
+                <Instagram className="w-4 h-4" />
+                <span>Instagram (@lyxen.e)</span>
+              </a>
+
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-white/10 hover:bg-[#25D366] text-white px-4 py-2 rounded-full text-xs font-semibold transition border border-white/10 shadow-sm"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>WhatsApp ({WHATSAPP_DISPLAY})</span>
+              </a>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-6">
-            <a href="#" className="hover:underline">Conditions Générales</a>
-            <a href="#" className="hover:underline">Politique de Confidentialité</a>
-            <a href="#" className="hover:underline">Contactez-nous</a>
-            <button
-              onClick={() => {
-                window.location.hash = '#admin';
-                setPage('admin');
-              }}
-              className="text-[11px] bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-lg transition font-semibold flex items-center gap-1.5 cursor-pointer border border-[#405844]"
-            >
-              <Settings className="w-3.5 h-3.5" />
-              Admin Dashboard
-            </button>
+
+          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+            <p>© 2026 LYXENESKIN PARIS. Tous droits réservés.</p>
+            <div className="flex flex-wrap items-center gap-6">
+              <a href="#hero" className="hover:text-white transition">Accueil</a>
+              <a href="#products" className="hover:text-white transition">Boutique</a>
+              <a href="#routine" className="hover:text-white transition">La Routine</a>
+              <a href="#contact" className="hover:text-white transition">Contact</a>
+              <button
+                onClick={() => {
+                  window.location.hash = '#admin';
+                  setPage('admin');
+                }}
+                className="text-[11px] bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-lg transition font-semibold flex items-center gap-1.5 cursor-pointer border border-[#405844]"
+              >
+                <Settings className="w-3.5 h-3.5" />
+                Admin Dashboard
+              </button>
+            </div>
           </div>
+
         </div>
       </footer>
 
